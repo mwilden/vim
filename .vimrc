@@ -8,7 +8,7 @@ imap <C-A> <ESC><C-a>
 nmap <C-P> <F12>
 
 " show most recently used files
-map <C-Z> :FuzzyFinderMruFile<CR>
+map <C-Z> :FufMruFile<CR>
 
 " next/prior error/grep result
 map <F5> <ESC>:cp<CR>
@@ -19,7 +19,7 @@ map <F8> :.Rake<CR>
 imap <F8> <ESC><F8>
 
 " show most recently used commands (Option-C)
-map ç :FuzzyFinderMruCmd<CR>
+map ç :FufMruCmd<CR>
 imap ç <ESC>ç
 
 " reexecute most recent command (Option-P)
@@ -31,7 +31,7 @@ nmap ≈ :w<CR>:!ruby %<CR>
 imap ≈ <Esc>≈
 
 " find file in rails hierarchy (Option-Z)
-map Ω :FuzzyFinderFile =RailsRoot()<CR>/**/
+map Ω :FufFile =RailsRoot()<CR>/**/
 imap Ω <Esc>Ω
 
 " replace word under cursor
@@ -96,8 +96,10 @@ set sw=2
 set tabstop=2
 set textwidth=72
 set tildeop
-set undofile
-set undodir=/tmp
+if v:version >= 730
+  set undofile
+  set undodir=/tmp
+endif
 set visualbell
 set wildmenu
 set wildmode=list:longest:full
@@ -138,9 +140,6 @@ endif
 hi LineNr ctermfg=black ctermbg=gray
 hi StatusLine guifg=Grey guibg=Blue
 
-" update taglist whenever file saved
-source ~/.vim/autotag.vim
-
 " Project plugin
 let g:proj_window_width=30
 let g:proj_flags='gimstc'
@@ -159,3 +158,5 @@ call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
 
 nnoremap <silent> <F10> :YRShow<CR>
+
+let g:fuf_modesDisable=[]
