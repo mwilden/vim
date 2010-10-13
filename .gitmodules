@@ -1,0 +1,48 @@
+[submodule "bundle/vim-rails"]
+	path = bundle/vim-rails
+	url = git://github.com/tpope/vim-rails
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = git://github.com/tpope/vim-surround
+[submodule "bundle/vim-haml"]
+	path = bundle/vim-haml
+	url = git://github.com/tpope/vim-haml
+[submodule "bundle/vim-cucumber"]
+	path = bundle/vim-cucumber
+	url = git://github.com/tpope/vim-cucumber
+[submodule "bundle/vim-abolish"]
+	path = bundle/vim-abolish
+	url = git://github.com/tpope/vim-abolish
+[submodule "bundle/vim-repeat"]
+	path = bundle/vim-repeat
+	url = git://github.com/tpope/vim-repeat
+[submodule "bundle/vim-fugitive"]
+	path = bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive
+[submodule "bundle/vim-ruby"]
+	path = bundle/vim-ruby
+	url = git://github.com/vim-ruby/vim-ruby
+[submodule "bundle/project"]
+	path = bundle/project
+	url = git://github.com/vim-scripts/project.tar.gz
+[submodule "bundle/FuzzyFinder"]
+	path = bundle/FuzzyFinder
+	url = git://github.com/vim-scripts/FuzzyFinder
+[submodule "bundle/apidock"]
+	path = bundle/apidock
+	url = git://github.com/vim-scripts/apidock.vim
+[submodule "bundle/matchit"]
+	path = bundle/matchit
+	url = git://github.com/vim-scripts/matchit.zip
+[submodule "bundle/NERD-Commenter"]
+	path = bundle/NERD-Commenter
+	url = git://github.com/vim-scripts/The-NERD-Commenter
+[submodule "bundle/ack"]
+	path = bundle/ack
+	url = git://github.com/vim-scripts/ack.vim
+[submodule "bundle/easytags"]
+	path = bundle/easytags
+	url = git://github.com/vim-scripts/easytags.vim
+[submodule "bundle/vim-endwise"]
+	path = bundle/vim-endwise
+	url = git://github.com/tpope/vim-endwise
