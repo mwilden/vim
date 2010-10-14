@@ -96,7 +96,7 @@ set sw=2
 set tabstop=2
 set textwidth=72
 set tildeop
-if v:version >= 730
+if v:version >= 703
   set undofile
   set undodir=/tmp
 endif
