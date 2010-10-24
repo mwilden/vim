@@ -1,5 +1,8 @@
 set nocompatible
 
+call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
+
 " save and execute current vim script
 nmap <C-A> :w<CR>:so %<CR>
 imap <C-A> <ESC><C-a>
@@ -35,7 +38,7 @@ map Ω :FufFile =RailsRoot()<CR>/**/
 imap Ω <Esc>Ω
 
 " replace word under cursor
-nmap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+nmap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " edit this file
 cabbrev pv e ~/.vimrc
@@ -153,8 +156,6 @@ set copyindent
 
 set mouse=n
 
-filetype off
-call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
 
 nnoremap <silent> <F10> :YRShow<CR>
