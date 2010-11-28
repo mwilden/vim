@@ -25,9 +25,6 @@
 [submodule "bundle/project"]
 	path = bundle/project
 	url = git://github.com/vim-scripts/project.tar.gz
-[submodule "bundle/FuzzyFinder"]
-	path = bundle/FuzzyFinder
-	url = git://github.com/vim-scripts/FuzzyFinder
 [submodule "bundle/apidock"]
 	path = bundle/apidock
 	url = git://github.com/vim-scripts/apidock.vim
