@@ -25,25 +25,25 @@ map <F6> <ESC>:cn<CR>
 " close quickfix
 map <S-F6> <ESC>:ccl<CR>
 
-" show most recently used commands (Option-C)
-map ç :FufMruCmd<CR>
-imap ç <ESC>ç
+" show most recently used commands
+map <M-c> :FufMruCmd<CR>
+imap <M-c> <ESC><M-c>
 
-" recall most recent command (Option-P)
-map π :<C-p>
-imap π <ESC>π
+" recall most recent command
+map <M-p> :<C-p>
+imap <M-p> <ESC><M-p>
 
 " execute ~/it.rb
 map <F9> :!ruby ~/it.rb<CR>
 imap <F9> <ESC><F8>
 
-" execute ruby file (Option-X)
-nmap ≈ :!ruby %<CR>
-imap ≈ <Esc>≈
+" execute ruby file
+nmap <M-x> :!ruby %<CR>
+imap <M-x> <Esc>≈
 
-" find file in rails hierarchy (Option-Z)
-map Ω :FufFile =RailsRoot()<CR>/**/
-imap Ω <Esc>Ω
+" find file in rails hierarchy
+map <M-z> :FufFile =RailsRoot()<CR>/**/
+imap <M-z> <Esc><M-z>
 
 " replace word under cursor
 nmap <Leader>s :%s/\<<C-r><C-w>\>/
@@ -97,6 +97,7 @@ set ignorecase smartcase
 set incsearch
 set laststatus=2
 set linebreak
+set macmeta
 set matchtime=2
 set mouse=n
 set nobackup
@@ -173,4 +174,4 @@ let g:proj_flags='gimstc'
 filetype plugin indent on
 
 let g:fuf_modesDisable=[]
-
+let g:browser = 'open -a /Applications/Firefox.app'
