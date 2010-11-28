@@ -1,5 +1,7 @@
 set nocompatible
 
+let mapleader=","
+
 call pathogen#runtime_append_all_bundles()
 "call pathogen#helptags()
 
@@ -13,24 +15,30 @@ nmap <C-P> <F12>
 " show most recently used files
 map <C-Z> :FufMruFile<CR>
 
+" show undo list
+nnoremap <F3> :GundoToggle<CR>
+
 " next/prior error/grep result
 map <F5> <ESC>:cp<CR>
 map <F6> <ESC>:cn<CR>
 
-" execute current test
-map <F8> :.Rake<CR>
-imap <F8> <ESC><F8>
+" close quickfix
+map <S-F6> <ESC>:ccl<CR>
 
 " show most recently used commands (Option-C)
 map ç :FufMruCmd<CR>
 imap ç <ESC>ç
 
-" reexecute most recent command (Option-P)
-map π :<C-p><CR>
+" recall most recent command (Option-P)
+map π :<C-p>
 imap π <ESC>π
 
+" execute ~/it.rb
+map <F9> :!ruby ~/it.rb<CR>
+imap <F9> <ESC><F8>
+
 " execute ruby file (Option-X)
-nmap ≈ :w<CR>:!ruby %<CR>
+nmap ≈ :!ruby %<CR>
 imap ≈ <Esc>≈
 
 " find file in rails hierarchy (Option-Z)
@@ -39,6 +47,9 @@ imap Ω <Esc>Ω
 
 " replace word under cursor
 nmap <Leader>s :%s/\<<C-r><C-w>\>/
+
+" show all occurences of word under cursor
+nmap <Leader>g :g/\<<C-r><C-w>\><CR>
 
 " edit this file
 cabbrev pv e ~/.vimrc
@@ -66,10 +77,15 @@ set breakat-=_
 set browsedir=current
 set clipboard=unnamed
 set completeopt=menu,preview
+set copyindent
 set display=lastline
 set equalalways
 set expandtab
-set formatoptions-=tc
+set foldmethod=marker
+set formatoptions-=c
+set formatoptions-=o
+set formatoptions-=r
+set formatoptions-=t
 set gdefault
 set grepprg=ack\ -H\ --nocolor\ --nogroup
 set guifont=Monaco:h10
@@ -82,6 +98,7 @@ set incsearch
 set laststatus=2
 set linebreak
 set matchtime=2
+set mouse=n
 set nobackup
 set noerrorbells
 set nostartofline
@@ -123,6 +140,12 @@ autocmd FocusLost *
   \   call feedkeys("\<Esc>") |
   \ endif
 
+" source .vimrc on write
+autocmd BufWritePost .vimrc source $MYVIMRC
+
+" set citrus filetype
+autocmd BufRead,BufNewFile *.citrus set filetype=citrus
+
 " visual settings that differ depending on whether we're running
 " a) normally, b) from a shell (no GUI), c) from diffing
 set lines=82
@@ -147,17 +170,7 @@ hi StatusLine guifg=Grey guibg=Blue
 let g:proj_window_width=30
 let g:proj_flags='gimstc'
 
-autocmd bufwritepost .vimrc source $MYVIMRC
-
-set foldmethod=marker
-
-let mapleader=","
-set copyindent
-
-set mouse=n
-
 filetype plugin indent on
 
-nnoremap <silent> <F10> :YRShow<CR>
-
 let g:fuf_modesDisable=[]
+
