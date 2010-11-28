@@ -46,6 +46,3 @@
 [submodule "bundle/vim-endwise"]
 	path = bundle/vim-endwise
 	url = git://github.com/tpope/vim-endwise
-[submodule "bundle/histwin"]
-	path = bundle/histwin
-	url = http://github.com/chrisbra/histwin.vim.git
