@@ -34,8 +34,8 @@ map <M-p> :<C-p>
 imap <M-p> <ESC><M-p>
 
 " execute ~/it.rb
-map <F9> :!ruby ~/it.rb<CR>
-imap <F9> <ESC><F8>
+map <F4> :!ruby ~/it.rb<CR>
+imap <F4> <ESC><F8>
 
 " execute ruby file
 nmap <M-x> :!ruby %<CR>
