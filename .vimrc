@@ -2,7 +2,9 @@ set nocompatible
 
 let mapleader=","
 
-call pathogen#runtime_append_all_bundles()
+if !exists("g:loaded_pathogen") || &cp
+  call pathogen#runtime_append_all_bundles()
+endif
 "call pathogen#helptags()
 
 " save and execute current vim script
@@ -164,9 +166,6 @@ else
   endif
 endif
 
-hi LineNr ctermfg=black ctermbg=gray
-hi StatusLine guifg=Grey guibg=Blue
-
 " Project plugin
 let g:proj_window_width=30
 let g:proj_flags='gimstc'
@@ -174,4 +173,8 @@ let g:proj_flags='gimstc'
 filetype plugin indent on
 
 let g:fuf_modesDisable=[]
-let g:browser = 'open -a /Applications/Firefox.app'
+
+colorscheme chance-of-storm
+hi LineNr guifg=gray ctermbg=gray
+hi StatusLine guifg=Grey guibg=Blue
+
