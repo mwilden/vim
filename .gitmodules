@@ -49,3 +49,9 @@
 [submodule "bundle/L9"]
 	path = bundle/L9
 	url = git://github.com/vim-scripts/L9.git
+[submodule "bundle/UnconditionalPaste"]
+	path = bundle/UnconditionalPaste
+	url = http://github.com/vim-scripts/UnconditionalPaste.git
+[submodule "bundle/mwilden"]
+	path = bundle/mwilden
+	url = http://github.com/mwilden/vim.git
