@@ -162,7 +162,7 @@ endif
 
 " Project plugin
 let g:proj_window_width=30
-let g:proj_flags='gimstc'
+let g:proj_flags='cgisST'
 
 filetype plugin indent on
 
