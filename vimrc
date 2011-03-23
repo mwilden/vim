@@ -3,7 +3,7 @@ set nocompatible
 if !exists("g:loaded_pathogen") || &cp
   call pathogen#runtime_append_all_bundles()
 endif
-call pathogen#helptags()
+"call pathogen#helptags()
 
 " save and execute current vim script
 nmap <C-A> :w<CR>:so %<CR>
