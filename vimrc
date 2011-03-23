@@ -19,8 +19,10 @@ map <C-Z> :FufMruFile<CR>
 nnoremap <F3> :GundoToggle<CR>
 
 " next/prior error/grep result
-map <F5> <ESC>:cp<CR>
-map <F6> <ESC>:cn<CR>
+nmap <F5> :cp<CR>
+imap <F5> <ESC><F5>
+nmap <F6> :cn<CR>
+imap <F6> <ESC><F6>
 
 " close quickfix
 map <S-F6> <ESC>:ccl<CR>
