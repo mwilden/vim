@@ -153,21 +153,11 @@ autocmd BufWritePost vimrc source $MYVIMRC|source $MYGVIMRC
 " set citrus filetype
 autocmd BufRead,BufNewFile *.citrus set filetype=citrus
 
-" visual settings that differ depending on whether we're running
-" a) normally, b) from a shell (no GUI), c) from diffing
-set lines=82
-if &l:diff
-  winpos 0 0
-  set columns=276
-  hi DiffAdd ctermbg=2
-  hi DiffChange ctermbg=3
-  hi DiffText ctermbg=7
-else
+if !exists("g:vimrcloaded")
+  set lines=82
   set columns=130
-  syntax on
-  if has("gui_running")
-    winpos 0 0
-  endif
+  winpos 0 0
+  let g:vimrcloaded = 1
 endif
 
 " Project plugin
