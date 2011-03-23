@@ -148,7 +148,7 @@ autocmd FocusLost *
   \ endif
 
 " source .vimrc on write
-autocmd BufWritePost .vimrc source $MYVIMRC
+autocmd BufWritePost vimrc source $MYVIMRC|source $MYGVIMRC
 
 " set citrus filetype
 autocmd BufRead,BufNewFile *.citrus set filetype=citrus
@@ -179,7 +179,5 @@ filetype plugin indent on
 let g:fuf_modesDisable=[]
 
 colorscheme chance-of-storm
-hi LineNr guifg=gray ctermbg=gray
-hi StatusLine guifg=Grey guibg=Blue
 
 runtime macros/matchit.vim
