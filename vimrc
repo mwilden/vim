@@ -72,6 +72,9 @@ nmap ' `
 " write the current buffer even if it requires root access
 command! W w !sudo tee % >/dev/null
 
+" delete inner line
+nmap dil ^D
+
 set autochdir
 set autowriteall
 set backspace=indent,eol,start
