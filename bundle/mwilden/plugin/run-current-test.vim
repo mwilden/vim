@@ -1,39 +1,34 @@
-" run-currenct-test.vim
+" run-current-test.vim
 " Mark Wilden
-" Last changed Nov 16 2010
+" Last changed 29 Mar 2011
 "
-" Runs a single Rails test
+" Runs a single test or an entire test file
 "
-" To install, copy this file to your plugins folder,
-" typically ~/.vim/plugin. To run the test at the
-" cursor, press <C-x>.
+" This plugin 1) Finds a window with a test file - either an RSpec spec
+" or a Cucumber feature 2) Executes that test or the whole file
 "
-" This plugin
-"   1) Finds a window with a test file
-"   2) Runs RSpec's 'spec' on that file at that line
+" To install, copy this file to your plugins folder, typically
+" ~/.vim/plugin. To run the test at the cursor, enter :call
+" MWRunCurrentSingleTest(). To run the entire test file, enter :call
+" MWRunCurrentTestFile(). You'll want to map these commands (see
+" below).
 "
-" The benefit of this plugin is that you can be working on
-" a test (or the code that the test tests) and run that one
-" test with a single keystroke.
-"
-" A significant benefit (over TextMate, e.g.) is that
-" you don't have to be editing the test when you run this
-" function - you just have to have the test open in a window.
-" That way, you can be editing the actual code under test and
+" A significant benefit (over TextMate, e.g.) is that you don't have to
+" be editing the test when you run this function - you just need to have
+" the test open in a window. You can be editing the code under test and
 " run the test without having to switch to the test's window.
 "
-" The plugin uses the RSpec option to run the test at a
-" given line number. If the current line in the test window is
-" in an 'it' block, " that test will be run. Otherwise, if the
-" current line is in a 'describe' block, the tests inside that
-" block will be run. This only works with the innermost 'describe'
-" block.
+" For RSpec specs, if the current line in the test window is in an 'it'
+" block, that test will be run. Otherwise, if the current line is in a
+" 'describe' block, the tests inside that block will be run. This only
+" works with the innermost 'describe' block. Cucumber features work
+" similarly
 "
-" This script maps <C-j> to run the test (in normal or insert
-" mode). This script does not save any files before running the test.
-" I have 'set autowriteall' in .vimrc to do this automatically
-" You can comment in the following maps to make C-j run the current
-" test and C-k run the current test file. These work in insert mode.
+" The script does not save files before running the test. I have
+" 'set autowriteall' in .vimrc to do this automatically
+" 
+" You can comment in the following maps to make C-j run the current test
+" and C-k run the current test file. These work in insert mode.
 
 "nmap <C-j> :call MWRunCurrentSingleTest()<CR>
 "imap <C-j> <ESC><C-j>
