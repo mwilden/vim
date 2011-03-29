@@ -51,17 +51,55 @@ endfunction
 
 function! s:RunCurrentTest(run_current_test_file)
   let original_winnr = winnr()
+
   let rc = s:ChangeToWindowWithTest()
-  if rc != 0
-    if rc == 1
+  if rc <= 0
+    if rc == 0
       echo "No test buffer found"
-    elseif rc == 2
+    elseif rc == -1
       echo "More than one test buffer found"
     endif
     return
   endif
 
-  let test_buf = expand('%:p')
+  call s:RunTest(a:run_current_test_file)
+
+  exe original_winnr.'wincmd w'
+endfunction
+
+" returns:
+"  -1 = more than one test found
+"   0 = no test found
+"   1 = spec found
+"   2 = feature found
+function! s:ChangeToWindowWithTest()
+  let test_type = 0
+  let test_winnr = -1
+  let i = 1
+  let last_bufnr = bufnr("$")
+  while i <= last_bufnr
+    if bufexists(i) && bufwinnr(i) != -1
+      if bufname(i) =~ '.*_spec\.rb'
+        if test_winnr != -1
+          return -1
+        endif
+        let test_winnr = bufwinnr(i)
+        let test_type = 1
+      endif
+    endif
+    let i = i + 1
+  endwhile
+
+  if test_type == 0
+    return 0
+  endif
+
+  exe test_winnr.'wincmd w'
+
+  return test_type
+endfunction
+
+function! s:RunTest(run_current_test_file)
   let line_number = line(".")
   let directory = expand('%:p:h')
   let test_directory = matchlist(directory, '\(^.*\)/spec/')[1]
@@ -82,74 +120,7 @@ function! s:RunCurrentTest(run_current_test_file)
   let &l:makeprg = &l:makeprg . expand("%:p") 
   echo &l:makeprg
   "exe 'make!'
+
   cwindow
-
-  exe original_winnr.'wincmd w'
-endfunction
-
-function! s:ChangeToWindowWithTest()
-  let i = 1
-  let last_bufnr = bufnr("$")
-  let test_winnr = -1
-  while i <= last_bufnr
-    if bufexists(i) && bufwinnr(i) != -1
-      if bufname(i) =~ '.*_spec\.rb'
-        if test_winnr != -1
-          return 2
-        endif
-        let test_winnr = bufwinnr(i)
-      endif
-    endif
-    let i = i + 1
-  endwhile
-
-  if test_winnr == -1
-    return 1
-  endif
-
-  exe test_winnr.'wincmd w'
-  return 0
-endfunction
-
-function! MWRunCurrentSpecFile()
-  let original_winnr = winnr()
-
-  let i = 1
-  while (i <= bufnr("$"))
-    if bufexists(i)
-      let test_winnr = bufwinnr(i)
-      if test_winnr != -1
-        if bufname(i) =~ '.*_spec\.rb'
-          break
-        endif
-      endif
-    endif
-    let i = i + 1
-  endwhile
-  if i > bufnr("$")
-    echo "No spec buffer found"
-    return
-  endif
-
-  exe bufwinnr(i).'wincmd w'
-
-  let test_buf = expand('%:p')
-  let directory = expand('%:p:h')
-  let test_directory = matchlist(directory, '\(^.*\)/spec/')[1]
-
-  let &l:errorformat='%D(in\ %f),'
-      \.'%\\s%#from\ %f:%l:%m,'
-      \.'%\\s%#from\ %f:%l:,'
-      \.'%\\s#{RAILS_ROOT}/%f:%l:\ %#%m,'
-      \.'%\\s%#[%f:%l:\ %#%m,'
-      \.'%\\s%#%f:%l:\ %#%m,'
-      \.'%\\s%#%f:%l:,'
-      \.'%m\ [%f:%l]:'
-
-  let &l:makeprg = "cd " . test_directory . " && bundle exec spec -b " . expand("%:p") 
-  exe 'make!'
-  cwindow
-
-  exe original_winnr.'wincmd w'
 
 endfunction
