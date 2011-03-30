@@ -172,3 +172,8 @@ colorscheme chance-of-storm
 
 runtime macros/matchit.vim
 
+nmap <C-j> :call MWRunCurrentSingleTest()<CR>
+imap <C-j> <ESC><C-j>
+
+nmap <C-k> :call MWRunCurrentTestFile()<CR>
+imap <C-k> <ESC><C-k>
