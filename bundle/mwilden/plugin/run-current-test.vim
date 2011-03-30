@@ -52,17 +52,17 @@ endfunction
 function! s:RunCurrentTest(run_current_test_file)
   let original_winnr = winnr()
 
-  let rc = s:ChangeToWindowWithTest()
-  if rc <= 0
-    if rc == 0
+  let test_type = s:ChangeToWindowWithTest()
+  if test_type <= 0
+    if test_type == 0
       echo "No test buffer found"
-    elseif rc == -1
+    elseif test_type == -1
       echo "More than one test buffer found"
     endif
     return
   endif
 
-  call s:RunTest(a:run_current_test_file)
+  call s:RunTest(test_type, a:run_current_test_file)
 
   exe original_winnr.'wincmd w'
 endfunction
@@ -85,6 +85,12 @@ function! s:ChangeToWindowWithTest()
         endif
         let test_winnr = bufwinnr(i)
         let test_type = 1
+      elseif bufname(i) =~ '\.feature'
+        if test_winnr != -1
+          return -1
+        endif
+        let test_winnr = bufwinnr(i)
+        let test_type = 2
       endif
     endif
     let i = i + 1
@@ -99,27 +105,33 @@ function! s:ChangeToWindowWithTest()
   return test_type
 endfunction
 
-function! s:RunTest(run_current_test_file)
+function! s:RunTest(test_type, run_current_test_file)
   let line_number = line(".")
   let directory = expand('%:p:h')
-  let test_directory = matchlist(directory, '\(^.*\)/spec/')[1]
 
-  let &l:errorformat='%D(in\ %f),'
-      \.'%\\s%#from\ %f:%l:%m,'
-      \.'%\\s%#from\ %f:%l:,'
-      \.'%\\s#{RAILS_ROOT}/%f:%l:\ %#%m,'
-      \.'%\\s%#[%f:%l:\ %#%m,'
-      \.'%\\s%#%f:%l:\ %#%m,'
-      \.'%\\s%#%f:%l:,'
-      \.'%m\ [%f:%l]:'
-
-  let &l:makeprg = "cd " . test_directory . " && bundle exec spec -b "
-  if !a:run_current_test_file
-    let &l:makeprg = &l:makeprg . "-l " . line_number . " "
+  if a:test_type == 1
+    let test_directory = matchlist(directory, '\(^.*\)/spec/')[1]
+    let &l:errorformat='%D(in\ %f),'
+        \.'%\\s%#from\ %f:%l:%m,'
+        \.'%\\s%#from\ %f:%l:,'
+        \.'%\\s#{RAILS_ROOT}/%f:%l:\ %#%m,'
+        \.'%\\s%#[%f:%l:\ %#%m,'
+        \.'%\\s%#%f:%l:\ %#%m,'
+        \.'%\\s%#%f:%l:,'
+        \.'%m\ [%f:%l]:'
+    let command = "spec -b "
+  elseif a:test_type == 2
+    let test_directory = matchlist(directory, '\(^.*\)/features/')[1]
+    let command = "cucumber "
   endif
+
+  let &l:makeprg = "cd " . test_directory . " && bundle exec " . command
   let &l:makeprg = &l:makeprg . expand("%:p") 
-  echo &l:makeprg
-  "exe 'make!'
+  if !a:run_current_test_file
+    let &l:makeprg = &l:makeprg . ":" . line_number
+  endif
+  "echo &l:makeprg
+  exe 'make!'
 
   cwindow
 
