@@ -172,4 +172,3 @@ colorscheme chance-of-storm
 
 runtime macros/matchit.vim
 
-set cursorline
