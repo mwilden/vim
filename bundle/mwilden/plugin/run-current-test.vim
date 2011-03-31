@@ -110,7 +110,7 @@ function! s:RunTest(test_type, run_current_test_file)
   let directory = expand('%:p:h')
 
   if a:test_type == 1
-    let test_directory = matchlist(directory, '\(^.*\)/spec/')[1]
+    let root_directory = matchlist(directory, '\(^.*\)/spec/')[1]
     let &l:errorformat='%D(in\ %f),'
         \.'%\\s%#from\ %f:%l:%m,'
         \.'%\\s%#from\ %f:%l:,'
@@ -121,11 +121,13 @@ function! s:RunTest(test_type, run_current_test_file)
         \.'%m\ [%f:%l]:'
     let command = "spec -b "
   elseif a:test_type == 2
-    let test_directory = matchlist(directory, '\(^.*\)/features/')[1]
-    let command = "cucumber "
+    let directories = matchlist(directory, '\(^.*\)/features/\(.*\)')
+    let root_directory = directories[1]
+    let features_directory = directories[2]
+    let command = "cucumber -p " . features_directory . ' '
   endif
 
-  let &l:makeprg = "cd " . test_directory . " && bundle exec " . command
+  let &l:makeprg = "cd " . root_directory . " && bundle exec " . command
   let &l:makeprg = &l:makeprg . expand("%:p") 
   if !a:run_current_test_file
     let &l:makeprg = &l:makeprg . ":" . line_number
