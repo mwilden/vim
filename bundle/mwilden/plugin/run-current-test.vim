@@ -121,10 +121,13 @@ function! s:RunTest(test_type, run_current_test_file)
         \.'%m\ [%f:%l]:'
     let command = "spec -b "
   elseif a:test_type == 2
-    let directories = matchlist(directory, '\(^.*\)/features/\(.*\)')
+    let directories = matchlist(directory, '\(^.*\)/features\(/.*\)\?')
     let root_directory = directories[1]
-    let features_directory = directories[2]
-    let command = "cucumber -p " . features_directory . ' '
+    let features_directory = substitute(directories[2], '/', '', '')
+    let command = "cucumber "
+    if len(features_directory) != 0
+      let command = command . "-p " . features_directory . ' '
+    endif
   endif
 
   let &l:makeprg = "cd " . root_directory . " && bundle exec " . command
