@@ -110,7 +110,7 @@ function! s:RunTest(test_type, run_current_test_file)
   let directory = expand('%:p:h')
 
   if a:test_type == 1
-    let root_directory = matchlist(directory, '\(^.*\)/spec/')[1]
+    let root_directory = matchlist(directory, '\(^.*\)/spec')[1]
     let &l:errorformat='%D(in\ %f),'
         \.'%\\s%#from\ %f:%l:%m,'
         \.'%\\s%#from\ %f:%l:,'
@@ -119,7 +119,14 @@ function! s:RunTest(test_type, run_current_test_file)
         \.'%\\s%#%f:%l:\ %#%m,'
         \.'%\\s%#%f:%l:,'
         \.'%m\ [%f:%l]:'
-    let command = "spec -b "
+    " Don't see an eays way to determine whether we're using RSpec 1 or
+    " 2, so make an exception for AntCat (and migrate it soon!)
+    if root_directory =~ 'antcat'
+      let executable = 'spec'
+    else
+      let executable = 'rspec'
+    endif
+    let command = executable . " -b "
   elseif a:test_type == 2
     let directories = matchlist(directory, '\(^.*\)/features\(/.*\)\?')
     let root_directory = directories[1]
