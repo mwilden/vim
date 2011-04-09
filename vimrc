@@ -177,3 +177,5 @@ imap <C-j> <ESC><C-j>
 
 nmap <C-k> :call MWRunCurrentTestFile()<CR>
 imap <C-k> <ESC><C-k>
+
+nmap <Leader>6 :s/\v\<(p<Bar>b<Bar>i) .{-}\>/\<\1\><CR>
