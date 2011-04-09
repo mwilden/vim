@@ -55,9 +55,9 @@ function! s:RunCurrentTest(run_current_test_file)
   let test_type = s:ChangeToWindowWithTest()
   if test_type <= 0
     if test_type == 0
-      echo "No test buffer found"
+      echoerr "No test buffer found"
     elseif test_type == -1
-      echo "More than one test buffer found"
+      echoerr "More than one test buffer found"
     endif
     return
   endif
