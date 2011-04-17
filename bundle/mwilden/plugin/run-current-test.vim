@@ -119,13 +119,7 @@ function! s:RunTest(test_type, run_current_test_file)
         \.'%\\s%#%f:%l:\ %#%m,'
         \.'%\\s%#%f:%l:,'
         \.'%m\ [%f:%l]:'
-    " Don't see an eays way to determine whether we're using RSpec 1 or
-    " 2, so make an exception for AntCat (and migrate it soon!)
-    if root_directory =~ 'antcat'
-      let executable = 'spec'
-    else
       let executable = 'rspec'
-    endif
     let command = executable . " -b "
   elseif a:test_type == 2
     let directories = matchlist(directory, '\(^.*\)/features\(/.*\)\?')
