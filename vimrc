@@ -1,6 +1,6 @@
 set nocompatible
 
-if !exists("g:loaded_pathogen") || &cp
+if !exists("g:loaded_pathogen")
   call pathogen#runtime_append_all_bundles()
 endif
 "call pathogen#helptags()
