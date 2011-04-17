@@ -12,3 +12,6 @@ function! Unlll()
 endfunction
 nmap <buffer> <leader>u :call Unlll()<CR>
 
+" remove attributes from <p>, <b>, and <i> tags
+nmap <Leader>6 :s/\v\<(p<Bar>b<Bar>i) .{-}\>/\<\1\><CR>
+
