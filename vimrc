@@ -9,6 +9,10 @@ endif
 nmap <C-A> :w<CR>:so %<CR>
 imap <C-A> <ESC><C-a>
 
+" save file
+nmap <C-S> :w<CR>
+imap <C-S> <ESC><C-s>
+
 " show/hide Project window
 nmap <C-P> <F12>
 
@@ -35,11 +39,6 @@ imap <M-c> <ESC><M-c>
 map <M-p> :<C-p>
 imap <M-p> <ESC><M-p>
 
-" execute ~/it.rb
-map <F4> :!ruby ~/it.rb<CR>
-imap <F4> <ESC><F8>
-map <C-x> <F4>
-
 " execute ruby file
 nmap <M-x> :!ruby %<CR>
 imap <M-x> <Esc>≈
@@ -55,7 +54,7 @@ nmap <Leader>s :%s/\<<C-r><C-w>\>/
 nmap <Leader>g :g/\<<C-r><C-w>\><CR>
 
 " edit this file
-cabbrev pv e ~/.vim/vimrc
+nmap <Leader>v :tabedit $MYVIMRC<CR>
 
 " use emacs keys on cmdline
 cnoremap <C-A> <Home>
@@ -177,5 +176,4 @@ imap <C-j> <ESC><C-j>
 
 nmap <C-k> :call MWRunCurrentTestFile()<CR>
 imap <C-k> <ESC><C-k>
-
-nmap <Leader>6 :s/\v\<(p<Bar>b<Bar>i) .{-}\>/\<\1\><CR>
+nmap <Leader>0 :only<CR>:tabonly<CR>
