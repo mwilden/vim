@@ -81,6 +81,7 @@ set breakat-=:
 set breakat-=_
 set browsedir=current
 set clipboard=unnamed
+set complete=.,w,b,u,t
 set completeopt=menu,preview
 set copyindent
 set display=lastline
@@ -147,7 +148,7 @@ autocmd FocusLost *
   \ endif
 
 " source .vimrc on write
-autocmd BufWritePost vimrc source $MYVIMRC|source $MYGVIMRC
+autocmd! BufWritePost $MYVIMRC source $MYVIMRC|source $MYGVIMRC
 
 " set citrus filetype
 autocmd BufRead,BufNewFile *.citrus set filetype=citrus
@@ -163,11 +164,10 @@ endif
 let g:proj_window_width=30
 let g:proj_flags='cgisST'
 
-filetype plugin indent on
-
+" FuzzyFinder plugin
 let g:fuf_modesDisable=[]
 
-colorscheme chance-of-storm
+filetype plugin indent on
 
 runtime macros/matchit.vim
 
