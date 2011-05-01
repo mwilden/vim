@@ -76,7 +76,6 @@ def change_to_window_with_test
 end
 
 def run_test test_type, run_whole_file
-  file = VIM::evaluate %{expand("%:p") }
   directory = VIM::evaluate %{expand('%:p:h')}
 
   case test_type
@@ -99,7 +98,7 @@ def run_test test_type, run_whole_file
     command += " -p #{features_directory}" unless features_directory.empty?
   end
 
-  makeprg = "cd #{root_directory} && bundle exec #{command} #{file}"
+  makeprg = "cd #{root_directory} && bundle exec #{command} %:p"
   makeprg += ":#{VIM::Buffer.current.line_number}" unless run_whole_file
   VIM::set_option %{makeprg=#{makeprg.gsub(/ /, '\ ')}}
 
