@@ -176,4 +176,5 @@ imap <C-j> <ESC><C-j>
 
 nmap <C-k> :call MWRunCurrentTestFile()<CR>
 imap <C-k> <ESC><C-k>
-nmap <Leader>0 :only<CR>:tabonly<CR>
+
+nmap <silent> <Leader>o :only<CR>:tabonly<CR>
