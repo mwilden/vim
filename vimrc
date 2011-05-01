@@ -48,7 +48,7 @@ map <silent> <M-z> :FufFile =RailsRoot()<CR>/**/
 imap <silent> <M-z> <Esc><M-z>
 
 " replace word under cursor
-nmap <silent> <Leader>s :%s/\<<C-r><C-w>\>/
+nmap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " show all occurences of word under cursor
 nmap <silent> <Leader>g :g/\<<C-r><C-w>\><CR>
