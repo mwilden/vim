@@ -1,143 +1,120 @@
 " run-current-test.vim
 " Mark Wilden
-" Last changed 29 Mar 2011
+" Version 2.0.0 30-Apr-2011
 "
 " Runs a single test or an entire test file
 "
-" This plugin 1) Finds a window with a test file - either an RSpec spec
-" or a Cucumber feature 2) Executes that test or the whole file
-"
-" To install, copy this file to your plugins folder, typically
-" ~/.vim/plugin. To run the test at the cursor, enter :call
-" MWRunCurrentSingleTest(). To run the entire test file, enter :call
-" MWRunCurrentTestFile(). You'll want to map these commands (see
-" below).
+" This plugin
+"   1) Finds a window with a test file - either an RSpec spec
+"      or a Cucumber feature
+"   2) Executes that test or the whole file
 "
 " A significant benefit (over TextMate, e.g.) is that you don't have to
 " be editing the test when you run this function - you just need to have
-" the test open in a window. You can be editing the code under test and
+" the test open in a window. You can be editing any code and
 " run the test without having to switch to the test's window.
 "
 " For RSpec specs, if the current line in the test window is in an 'it'
 " block, that test will be run. Otherwise, if the current line is in a
 " 'describe' block, the tests inside that block will be run. This only
 " works with the innermost 'describe' block. Cucumber features work
-" similarly
+" similarly.
 "
 " The script does not save files before running the test. I have
-" 'set autowriteall' in .vimrc to do this automatically
-" 
-" You can comment in the following maps to make C-j run the current test
-" and C-k run the current test file. These work in insert mode.
+" 'set autowriteall' in .vimrc to do this automatically.
 
-"nmap <C-j> :call MWRunCurrentSingleTest()<CR>
-"imap <C-j> <ESC><C-j>
-
-"nmap <C-k> :call MWRunCurrentTestFile()<CR>
-"imap <C-k> <ESC><C-k>
-
-"if exists("loaded_mw_run_current_test")
+"if exists("g:loaded_run_current_test")
   "finish
 "endif
-let loaded_mw_run_current_test = 1
+let g:loaded_run_current_test = 1
 
-function! MWRunCurrentSingleTest()
-  call s:RunCurrentTest(0)
+" Default maps. These work in insert or normal mode.
+nmap <silent> <C-j> :call RunCurrentSingleTest()<CR>
+imap <silent> <C-j> <ESC><C-j>
+nmap <silent> <C-k> :call RunCurrentTestFile()<CR>
+imap <silent> <C-k> <ESC><C-k>
+
+function! RunCurrentSingleTest()
+  ruby run_current_test
 endfunction
 
-function! MWRunCurrentTestFile()
-  call s:RunCurrentTest(1)
+function! RunCurrentTestFile()
+  ruby run_current_test true
 endfunction
 
-function! s:RunCurrentTest(run_current_test_file)
-  let original_winnr = winnr()
+ruby << EOF
 
-  let test_type = s:ChangeToWindowWithTest()
-  if test_type <= 0
-    if test_type == 0
-      echoerr "No test buffer found"
-    elseif test_type == -1
-      echoerr "More than one test buffer found"
-    endif
-    return
-  endif
+def run_current_test run_whole_file = false
+  original_window = VIM::Window.current
+  test_type = change_to_window_with_test
+  run_test test_type, run_whole_file
+rescue Exception => e
+  VIM::command %{echohl ErrorMsg | echo "#{e.message}" | echohl None}
+ensure
+  set_current_window original_window
+end
 
-  call s:RunTest(test_type, a:run_current_test_file)
+def change_to_window_with_test
+  test_type = test_window = nil
+  for i in 0...VIM::Window.count
+    window = VIM::Window[i]
+    case window.buffer.name
+    when /.*_spec\.rb/
+      test_type = :spec
+    when /\.feature/
+      test_type = :feature
+    else
+      next
+    end
+    raise "More than one test window found" if test_window
+    test_window = window
+  end
 
-  exe original_winnr.'wincmd w'
-endfunction
+  raise "No test window found" unless test_window
+  set_current_window test_window
+  test_type
+end
 
-" returns:
-"  -1 = more than one test found
-"   0 = no test found
-"   1 = spec found
-"   2 = feature found
-function! s:ChangeToWindowWithTest()
-  let test_type = 0
-  let test_winnr = -1
-  let i = 1
-  let last_bufnr = bufnr("$")
-  while i <= last_bufnr
-    if bufexists(i) && bufwinnr(i) != -1
-      if bufname(i) =~ '.*_spec\.rb'
-        if test_winnr != -1
-          return -1
-        endif
-        let test_winnr = bufwinnr(i)
-        let test_type = 1
-      elseif bufname(i) =~ '\.feature'
-        if test_winnr != -1
-          return -1
-        endif
-        let test_winnr = bufwinnr(i)
-        let test_type = 2
-      endif
-    endif
-    let i = i + 1
-  endwhile
+def run_test test_type, run_whole_file
+  file = VIM::evaluate %{expand("%:p") }
+  directory = VIM::evaluate %{expand('%:p:h')}
 
-  if test_type == 0
-    return 0
-  endif
+  case test_type
+  when :spec
+    root_directory = directory.match(%r{(^.*)/spec/})[1]
+    VIM::set_option %{errorformat=%D(in\\ %f),} +
+        %{%\\\\s%#from\\ %f:%l:%m,} +
+        %{%\\\\s%#from\\ %f:%l:,} +
+        %{%\\\\s#\{RAILS_ROOT\}/%f:%l:\\ %#%m,} +
+        %{%\\\\s%#[%f:%l:\\ %#%m,} +
+        %{%\\\\s%#%f:%l:\\ %#%m,} +
+        %{%\\\\s%#%f:%l:,} +
+        %{%m\\ [%f:%l]:}
+    command = 'rspec -b'
+  when :feature
+    directories = directory.match(%r{(^.*)/features(/.*)?})
+    root_directory = directories[1]
+    features_directory = directories[2].gsub '/', ''
+    command = "cucumber"
+    command += " -p #{features_directory}" unless features_directory.empty?
+  end
 
-  exe test_winnr.'wincmd w'
+  makeprg = "cd #{root_directory} && bundle exec #{command} #{file}"
+  makeprg += ":#{VIM::Buffer.current.line_number}" unless run_whole_file
+  VIM::set_option %{makeprg=#{makeprg.gsub(/ /, '\ ')}}
 
-  return test_type
-endfunction
+  #VIM::message(makeprg)
+  VIM::command %{exe 'make!'}
 
-function! s:RunTest(test_type, run_current_test_file)
-  let line_number = line(".")
-  let directory = expand('%:p:h')
+  VIM::command %{cwindow}
+end
 
-  if a:test_type == 1
-    let root_directory = matchlist(directory, '\(^.*\)/spec')[1]
-    let &l:errorformat='%D(in\ %f),'
-        \.'%\\s%#from\ %f:%l:%m,'
-        \.'%\\s%#from\ %f:%l:,'
-        \.'%\\s#{RAILS_ROOT}/%f:%l:\ %#%m,'
-        \.'%\\s%#[%f:%l:\ %#%m,'
-        \.'%\\s%#%f:%l:\ %#%m,'
-        \.'%\\s%#%f:%l:,'
-        \.'%m\ [%f:%l]:'
-    let command = 'rspec -b'
-  elseif a:test_type == 2
-    let directories = matchlist(directory, '\(^.*\)/features\(/.*\)\?')
-    let root_directory = directories[1]
-    let features_directory = substitute(directories[2], '/', '', '')
-    let command = "cucumber"
-    if len(features_directory) != 0
-      let command = command . " -p " . features_directory . ' '
-    endif
-  endif
+def set_current_window window
+  return if window == $curwin
+  start = $curwin
+  begin
+    VIM::command "wincmd w"
+  end while $curwin != window && $curwin != start
+end
 
-  let &l:makeprg = "cd " . root_directory . " && bundle exec " . command . ' '
-  let &l:makeprg = &l:makeprg . expand("%:p") 
-  if !a:run_current_test_file
-    let &l:makeprg = &l:makeprg . ":" . line_number
-  endif
-  "echo &l:makeprg
-  exe 'make!'
-
-  cwindow
-
-endfunction
+EOF

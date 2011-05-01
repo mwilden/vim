@@ -6,55 +6,55 @@ endif
 "call pathogen#helptags()
 
 " save and execute current vim script
-nmap <C-A> :w<CR>:so %<CR>
-imap <C-A> <ESC><C-a>
+nmap <silent> <C-A> :w<CR>:source %<CR>
+imap <silent> <C-A> <ESC><C-a>
 
 " save file
-nmap <C-S> :w<CR>
-imap <C-S> <ESC><C-s>
+nmap <silent> <C-S> :w<CR>
+imap <silent> <C-S> <ESC><C-s>
 
 " show/hide Project window
-nmap <C-P> <F12>
+nmap <silent> <C-P> <F12>
 
 " show most recently used files
-map <C-Z> :FufMruFile<CR>
+map <silent> <C-Z> :FufMruFile<CR>
 
 " show undo list
-nnoremap <F3> :GundoToggle<CR>
+nnoremap <silent> <F3> :GundoToggle<CR>
 
 " next/prior error/grep result
-nmap <F5> :cp<CR>
-imap <F5> <ESC><F5>
-nmap <F6> :cn<CR>
-imap <F6> <ESC><F6>
+nmap <silent> <F5> :cp<CR>
+imap <silent> <F5> <ESC><F5>
+nmap <silent> <F6> :cn<CR>
+imap <silent> <F6> <ESC><F6>
 
 " close quickfix
-map <S-F6> <ESC>:ccl<CR>
+map <silent> <S-F6> <ESC>:ccl<CR>
 
 " show most recently used commands
-map <M-c> :FufMruCmd<CR>
-imap <M-c> <ESC><M-c>
+map <silent> <M-c> :FufMruCmd<CR>
+imap <silent> <M-c> <ESC><M-c>
 
 " recall most recent command
-map <M-p> :<C-p>
-imap <M-p> <ESC><M-p>
+map <silent> <M-p> :<C-p>
+imap <silent> <M-p> <ESC><M-p>
 
 " execute ruby file
-nmap <M-x> :!ruby %<CR>
-imap <M-x> <Esc>≈
+nmap <silent> <M-x> :!ruby %<CR>
+imap <silent> <M-x> <Esc>≈
 
 " find file in rails hierarchy
-map <M-z> :FufFile =RailsRoot()<CR>/**/
-imap <M-z> <Esc><M-z>
+map <silent> <M-z> :FufFile =RailsRoot()<CR>/**/
+imap <silent> <M-z> <Esc><M-z>
 
 " replace word under cursor
-nmap <Leader>s :%s/\<<C-r><C-w>\>/
+nmap <silent> <Leader>s :%s/\<<C-r><C-w>\>/
 
 " show all occurences of word under cursor
-nmap <Leader>g :g/\<<C-r><C-w>\><CR>
+nmap <silent> <Leader>g :g/\<<C-r><C-w>\><CR>
 
 " edit this file
-nmap <Leader>v :tabedit $MYVIMRC<CR>
+nmap <silent> <Leader>v :tabedit $MYVIMRC<CR>
 
 " use emacs keys on cmdline
 cnoremap <C-A> <Home>
@@ -66,13 +66,13 @@ cnoremap <C-N> <Down>
 cnoremap <C-D> <Del>
 
 " go to character, not just line
-nmap ' `
+nmap <silent> ' `
 
 " write the current buffer even if it requires root access
 command! W w !sudo tee % >/dev/null
 
 " delete inner line
-nmap dil ^D
+nmap <silent> dil ^D
 
 set autochdir
 set autowriteall
@@ -170,11 +170,5 @@ let g:fuf_modesDisable=[]
 filetype plugin indent on
 
 runtime macros/matchit.vim
-
-nmap <C-j> :call MWRunCurrentSingleTest()<CR>
-imap <C-j> <ESC><C-j>
-
-nmap <C-k> :call MWRunCurrentTestFile()<CR>
-imap <C-k> <ESC><C-k>
 
 nmap <silent> <Leader>o :only<CR>:tabonly<CR>
