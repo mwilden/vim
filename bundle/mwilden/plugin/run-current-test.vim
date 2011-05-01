@@ -119,19 +119,18 @@ function! s:RunTest(test_type, run_current_test_file)
         \.'%\\s%#%f:%l:\ %#%m,'
         \.'%\\s%#%f:%l:,'
         \.'%m\ [%f:%l]:'
-      let executable = 'rspec'
-    let command = executable . " -b "
+    let command = 'rspec -b'
   elseif a:test_type == 2
     let directories = matchlist(directory, '\(^.*\)/features\(/.*\)\?')
     let root_directory = directories[1]
     let features_directory = substitute(directories[2], '/', '', '')
-    let command = "cucumber "
+    let command = "cucumber"
     if len(features_directory) != 0
-      let command = command . "-p " . features_directory . ' '
+      let command = command . " -p " . features_directory . ' '
     endif
   endif
 
-  let &l:makeprg = "cd " . root_directory . " && bundle exec " . command
+  let &l:makeprg = "cd " . root_directory . " && bundle exec " . command . ' '
   let &l:makeprg = &l:makeprg . expand("%:p") 
   if !a:run_current_test_file
     let &l:makeprg = &l:makeprg . ":" . line_number
