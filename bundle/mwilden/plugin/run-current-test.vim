@@ -98,8 +98,9 @@ def run_test test_type, run_whole_file
     command += " -p #{features_directory}" unless features_directory.empty?
   end
 
-  makeprg = "cd #{root_directory} && bundle exec #{command} %:p"
-  makeprg += ":#{VIM::Buffer.current.line_number}" unless run_whole_file
+  file = VIM::evaluate %{expand('%:p')}
+  makeprg = "cd #{root_directory} && bundle exec #{command} #{file}"
+  makeprg += "\\:#{VIM::Buffer.current.line_number}" unless run_whole_file
   VIM::set_option %{makeprg=#{makeprg.gsub(/ /, '\ ')}}
 
   #VIM::message(makeprg)
