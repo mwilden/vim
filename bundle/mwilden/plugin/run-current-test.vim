@@ -55,24 +55,34 @@ ensure
 end
 
 def change_to_window_with_test
-  test_type = test_window = nil
-  for i in 0...VIM::Window.count
-    window = VIM::Window[i]
-    case window.buffer.name
-    when /.*_spec\.rb/
-      test_type = :spec
-    when /\.feature/
-      test_type = :feature
-    else
-      next
+  test_window = nil
+  test_type = get_window_test_type VIM::Window.current
+  if test_type
+    test_window = VIM::Window.current
+  else
+    for i in 0...VIM::Window.count
+      window = VIM::Window[i]
+      this_test_type = get_window_test_type window
+      next unless this_test_type
+      raise "More than one test window found" if test_window
+      test_window = window
+      test_type = this_test_type
     end
-    raise "More than one test window found" if test_window
-    test_window = window
   end
 
   raise "No test window found" unless test_window
   set_current_window test_window
   test_type
+end
+
+def get_window_test_type window
+  case window.buffer.name
+  when /.*_spec\.rb/
+    return :spec
+  when /\.feature/
+    return :feature
+  end
+  nil
 end
 
 def run_test test_type, run_whole_file
