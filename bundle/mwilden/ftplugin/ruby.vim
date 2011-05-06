@@ -15,3 +15,10 @@ nmap <buffer> <leader>u :call Unlll()<CR>
 " remove attributes from <p>, <b>, and <i> tags
 nmap <Leader>6 :s/\v\<(p<Bar>b<Bar>i) .{-}\>/\<\1\><CR>
 
+" remove o:
+nmap <Leader>7 :s/o:/<CR>:s/'/"<CR>
+
+" remove <span lang=EN-GB>
+nmap <Leader>8 :s/<span lang=EN-GB>\(.\{-\}\)<\/span>/\1<CR>
+
+
