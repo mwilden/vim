@@ -44,8 +44,8 @@ nmap <silent> <M-x> :!ruby %<CR>
 imap <silent> <M-x> <Esc>≈
 
 " find file in rails hierarchy
-map <silent> <M-z> :FufFile =RailsRoot()<CR>/**/
-imap <silent> <M-z> <Esc><M-z>
+map <M-z> :FufFile =RailsRoot()<CR>/**/
+imap <M-z> <Esc><M-z>
 
 " replace word under cursor
 nmap <Leader>s :%s/\<<C-r><C-w>\>/
