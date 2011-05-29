@@ -1,5 +1,7 @@
 set nocompatible
 
+let mapleader = ','
+
 if !exists("g:loaded_pathogen")
   call pathogen#runtime_append_all_bundles()
 endif
@@ -56,6 +58,9 @@ nmap <silent> <Leader>g :g/\<<C-r><C-w>\><CR>
 " edit this file
 nmap <silent> <Leader>v :tabedit $MYVIMRC<CR>
 
+" unhighlight search
+nnoremap <Leader><Space> :noh<CR>
+
 " use emacs keys on cmdline
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
@@ -73,6 +78,10 @@ command! W w !sudo tee % >/dev/null
 
 " delete inner line
 nmap <silent> dil ^D
+onoremap <silent> il :<C-U>normal! 0v$h<CR>
+
+" close other windows and tabs
+nmap <silent> <Leader>o :only<CR>:tabonly<CR>
 
 set autochdir
 set autowriteall
@@ -94,11 +103,12 @@ set formatoptions-=r
 set formatoptions-=t
 set gdefault
 set grepprg=ack\ -H\ --nocolor\ --nogroup
-set guifont=Monaco:h10
+set guifont=Menlo:h12
 set guioptions+=c
 set guioptions-=T
 set guitablabel=%t
 set history=200
+set hlsearch
 set ignorecase smartcase
 set incsearch
 set laststatus=2
@@ -171,4 +181,4 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
-nmap <silent> <Leader>o :only<CR>:tabonly<CR>
+nmap Q @q

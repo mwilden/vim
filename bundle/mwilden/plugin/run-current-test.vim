@@ -101,6 +101,9 @@ def run_test test_type, run_whole_file
         %{%m\\ [%f:%l]:}
     command = 'rspec -b'
   when :feature
+    efm = "%D(in %f),%-G.%.%#,%f:%l:in %m"
+    VIM::command %{let &efm="#{efm}"}
+#    VIM::set_option %{errorformat=%D(in\\ %f),%f:%l:%c:%m,%W\\ %.%#\\ (%m),%-Z%f:%l:%.%#,%-G%.%#}
     directories = directory.match(%r{(^.*)/features(/.*)?})
     root_directory = directories[1]
     features_directory = directories[2].gsub '/', ''
@@ -109,7 +112,7 @@ def run_test test_type, run_whole_file
   end
 
   file = VIM::evaluate %{expand('%:p')}
-  makeprg = "cd #{root_directory} && bundle exec #{command} #{file}"
+  makeprg = %{cd #{root_directory} && echo "(in `pwd`)" && bundle exec #{command} #{file}}
   makeprg += "\\:#{VIM::Buffer.current.line_number}" unless run_whole_file
   VIM::set_option %{makeprg=#{makeprg.gsub(/ /, '\ ')}}
 
