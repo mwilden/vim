@@ -91,19 +91,10 @@ def run_test test_type, run_whole_file
   case test_type
   when :spec
     root_directory = directory.match(%r{(^.*)/spec/})[1]
-    VIM::set_option %{errorformat=%D(in\\ %f),} +
-        %{%\\\\s%#from\\ %f:%l:%m,} +
-        %{%\\\\s%#from\\ %f:%l:,} +
-        %{%\\\\s#\{RAILS_ROOT\}/%f:%l:\\ %#%m,} +
-        %{%\\\\s%#[%f:%l:\\ %#%m,} +
-        %{%\\\\s%#%f:%l:\\ %#%m,} +
-        %{%\\\\s%#%f:%l:,} +
-        %{%m\\ [%f:%l]:}
+    errorformat = make_spec_errorformat
     command = 'rspec -b'
   when :feature
-    efm = "%D(in %f),%-G.%.%#,%f:%l:in %m"
-    VIM::command %{let &efm="#{efm}"}
-#    VIM::set_option %{errorformat=%D(in\\ %f),%f:%l:%c:%m,%W\\ %.%#\\ (%m),%-Z%f:%l:%.%#,%-G%.%#}
+    errorformat = "%D(in %f),%-G.%.%#,%f:%l:in %m"
     directories = directory.match(%r{(^.*)/features(/.*)?})
     root_directory = directories[1]
     features_directory = directories[2].gsub '/', ''
@@ -111,6 +102,7 @@ def run_test test_type, run_whole_file
     command += " -p #{features_directory}" unless features_directory.empty?
   end
 
+  VIM::command %{let &errorformat='#{errorformat}'}
   file = VIM::evaluate %{expand('%:p')}
   makeprg = %{cd #{root_directory} && echo "(in `pwd`)" && bundle exec #{command} #{file}}
   makeprg += "\\:#{VIM::Buffer.current.line_number}" unless run_whole_file
@@ -120,6 +112,11 @@ def run_test test_type, run_whole_file
   VIM::command %{exe 'make!'}
 
   VIM::command %{cwindow}
+end
+
+def make_spec_errorformat
+  string = '%f:%l' # RSpec
+  string << ',' << '%.%#: %f: %m on line %l%.%#' # Citrus
 end
 
 def set_current_window window
