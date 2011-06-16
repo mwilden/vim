@@ -92,7 +92,7 @@ def run_test test_type, run_whole_file
   when :spec
     root_directory = directory.match(%r{(^.*)/spec/})[1]
     errorformat = make_spec_errorformat
-    command = 'rspec -b'
+    command = 'rspec'
   when :feature
     errorformat = "%D(in %f),%-G.%.%#,%f:%l:in %m"
     directories = directory.match(%r{(^.*)/features(/.*)?})
