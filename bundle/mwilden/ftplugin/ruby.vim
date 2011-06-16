@@ -23,4 +23,4 @@ nmap <Leader>7 :s/o:/<CR>:s/'/"<CR>
 nmap <Leader>8 :s/<span lang=EN-GB>\(.\{-\}\)<\/span>/\1<CR>
 
 " surround a preprocessed line with test scaffold to see why it doesn't work
-nmap <Leader>9 Oit "should work" do<Esc>jI<Tab><Tab><Tab><Tab>@grammar.parse('A')end<Esc><C-J>
+nmap <Leader>9 Oit "should work" do<Esc>jI<Tab><Tab><Tab><Tab>@grammar.parse(%{A})end<Esc><C-J>
