@@ -1,4 +1,4 @@
 colorscheme sand
 hi Cursor guifg=black guibg=orange
-hi LineNr guifg=darkgray guibg=black ctermbg=gray
+hi LineNr term=bold,reverse cterm=bold,reverse gui=bold,reverse guifg=#005070
 hi DiffText guibg=white
