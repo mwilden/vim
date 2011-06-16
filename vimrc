@@ -86,6 +86,8 @@ nmap <silent> <Leader>o :only<CR>:tabonly<CR>
 " run 'q' macro
 nmap Q @q
 
+nmap <Leader>7 :botright cwindow<CR>
+
 set autochdir
 set autowriteall
 set backspace=indent,eol,start
@@ -149,8 +151,6 @@ set wildmode=list:longest:full
 set winheight=25
 set writeany
 
-botright cwindow
-
 " go to line we were on the last time we edited the file
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -189,6 +189,11 @@ let g:fuf_modesDisable=[]
 filetype plugin indent on
 
 runtime macros/matchit.vim
+
+" vim-browserreload-mac
+let g:returnApp = 'MacVim'
+" FirefoxReloadStart to activate
+"
 augroup BgHighlight
   autocmd!
   autocmd WinEnter * set number
