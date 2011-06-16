@@ -189,3 +189,8 @@ let g:fuf_modesDisable=[]
 filetype plugin indent on
 
 runtime macros/matchit.vim
+augroup BgHighlight
+  autocmd!
+  autocmd WinEnter * set number
+  autocmd WinLeave * set nonumber
+augroup END
