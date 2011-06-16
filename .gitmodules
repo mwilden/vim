@@ -55,3 +55,6 @@
 [submodule "bundle/snipmate"]
 	path = bundle/snipmate
 	url = https://github.com/msanders/snipmate.vim
+[submodule "bundle/vim-browsereload-mac"]
+	path = bundle/vim-browsereload-mac
+	url = https://github.com/tell-k/vim-browsereload-mac.git

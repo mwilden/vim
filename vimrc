@@ -83,6 +83,9 @@ onoremap <silent> il :<C-U>normal! 0v$h<CR>
 " close other windows and tabs
 nmap <silent> <Leader>o :only<CR>:tabonly<CR>
 
+" run 'q' macro
+nmap Q @q
+
 set autochdir
 set autowriteall
 set backspace=indent,eol,start
@@ -125,11 +128,14 @@ set numberwidth=3
 set printoptions=syntax:n
 set printheader=%F%=Page\ %N
 set ruler
+set scrolloff=1
 set shiftround
 set shortmess+=t
+set showbreak=@
 set showcmd
 set showmatch
 set sw=2
+set switchbuf=useopen
 set tabstop=2
 set textwidth=72
 set tildeop
@@ -141,6 +147,9 @@ set visualbell
 set wildmenu
 set wildmode=list:longest:full
 set winheight=25
+set writeany
+
+botright cwindow
 
 " go to line we were on the last time we edited the file
 autocmd BufReadPost *
@@ -180,5 +189,3 @@ let g:fuf_modesDisable=[]
 filetype plugin indent on
 
 runtime macros/matchit.vim
-
-nmap Q @q
