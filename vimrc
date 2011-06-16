@@ -86,7 +86,7 @@ nmap <silent> <Leader>o :only<CR>:tabonly<CR>
 " run 'q' macro
 nmap Q @q
 
-nmap <Leader>7 :botright cwindow<CR>
+nmap <Leader>7 <C-W>b<C-W>J
 
 set autochdir
 set autowriteall
