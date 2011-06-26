@@ -77,7 +77,7 @@ nmap <silent> ' `
 command! W w !sudo tee % >/dev/null
 
 " delete inner line
-nmap <silent> dil ^D
+nmap <silent> dil ^D"xdd
 onoremap <silent> il :<C-U>normal! 0v$h<CR>
 
 " close other windows and tabs
@@ -86,7 +86,7 @@ nmap <silent> <Leader>o :only<CR>:tabonly<CR>
 " run 'q' macro
 nmap Q @q
 
-nmap <Leader>7 <C-W>b<C-W>J
+nmap <Leader>7 :copen<CR><C-W>J<C-W>10+
 
 set autochdir
 set autowriteall
@@ -199,3 +199,8 @@ augroup BgHighlight
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
 augroup END
+
+set cursorline
+
+nmap <Leader>n :call ReloadAllSnippets()<CR>
+nmap <Leader>8 :cope<CR>:cold<CR>
