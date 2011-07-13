@@ -104,19 +104,19 @@ def run_test test_type, run_whole_file
 
   VIM::command %{let &errorformat='#{errorformat}'}
   file = VIM::evaluate %{expand('%:p')}
-  makeprg = %{cd #{root_directory} && echo "(in `pwd`)" && bundle exec #{command} #{file}}
+  makeprg = %{cd #{root_directory} && bundle exec #{command} #{file}}
   makeprg += "\\:#{VIM::Buffer.current.line_number}" unless run_whole_file
   VIM::set_option %{makeprg=#{makeprg.gsub(/ /, '\ ')}}
 
   #VIM::message(makeprg)
-  VIM::command %{exe 'make!'}
-
-  VIM::command %{cwindow}
+  VIM::command 'make'
+  VIM::command 'cwindow'
 end
 
 def make_spec_errorformat
-  string = '%f:%l' # RSpec
-  string << ',' << '%.%#: %f: %m on line %l%.%#' # Citrus
+  ' %## %f:%l' + 
+  ',' +
+  '%Din %f'
 end
 
 def set_current_window window
