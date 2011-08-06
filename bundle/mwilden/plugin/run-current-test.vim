@@ -95,11 +95,13 @@ def run_test test_type, run_whole_file
     command = 'rspec'
   when :feature
     errorformat = "%D(in %f),%-G.%.%#,%f:%l:in %m"
-    directories = directory.match(%r{(^.*)/features(/.*)?})
+    directories = directory.match(%r{^(.*)/features(/.*)?})
     root_directory = directories[1]
-    features_directory = directories[2].gsub '/', ''
     command = "cucumber"
-    command += " -p #{features_directory}" unless features_directory.empty?
+    if directories[2]
+      features_directory = directories[2].gsub '/', ''
+      command += " -p #{features_directory}" unless features_directory.empty?
+    end
   end
 
   VIM::command %{let &errorformat='#{errorformat}'}
