@@ -90,7 +90,7 @@ def run_test test_type, run_whole_file
 
   case test_type
   when :spec
-    root_directory = directory.match(%r{(^.*)/spec/})[1]
+    root_directory = directory.match(%r{^(.*)/spec/?})[1]
     errorformat = make_spec_errorformat
     command = 'rspec'
   when :feature
