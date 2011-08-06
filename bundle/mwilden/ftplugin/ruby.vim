@@ -1,5 +1,5 @@
 " insert breakpoint
-nmap <buffer> <F1> Orequire 'ruby-debug';debugger;''<ESC>j
+nmap <buffer> <F1> Orequire 'ruby-debug';debugger<ESC>j
 imap <buffer> <F1> <Esc><F1>
 
 " debugging output
