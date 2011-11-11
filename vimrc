@@ -29,9 +29,13 @@ nmap <silent> <F5> :cp<CR>
 imap <silent> <F5> <ESC><F5>
 nmap <silent> <F6> :cn<CR>
 imap <silent> <F6> <ESC><F6>
+nmap <silent> <S-F5> :colder<CR>
+imap <silent> <S-F5> <ESC><S-F5>
+nmap <silent> <S-F6> :cnewer<CR>
+imap <silent> <S-F6> <ESC><S-F6>
 
 " close quickfix
-map <silent> <S-F6> <ESC>:ccl<CR>
+map <silent> <C-F6> <ESC>:ccl<CR>
 
 " show most recently used commands
 map <silent> <M-c> :FufMruCmd<CR>
@@ -85,8 +89,6 @@ nmap <silent> <Leader>o :only<CR>:tabonly<CR>
 
 " run 'q' macro
 nmap Q @q
-
-nmap <Leader>7 :copen<CR><C-W>J<C-W>10+
 
 set autochdir
 set autowriteall
@@ -203,4 +205,8 @@ augroup END
 set cursorline
 
 nmap <Leader>n :call ReloadAllSnippets()<CR>
+nmap <Leader>7 :copen<CR><C-W>J<C-W>5+
 nmap <Leader>8 :cope<CR>:cold<CR>
+nmap <Leader>2 :set number<CR>
+
+nmap <Leader>i Oit "should handle this" do<Esc>o@grammar.parse('<Esc>JxA').value<CR>end<CR><Esc>kk<C-J>
