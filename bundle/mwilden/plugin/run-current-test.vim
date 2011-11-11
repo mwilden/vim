@@ -94,7 +94,6 @@ def run_test test_type, run_whole_file
     errorformat = make_spec_errorformat
     command = 'rspec'
   when :feature
-    errorformat = "%D(in %f),%-G.%.%#,%f:%l:in %m"
     directories = directory.match(%r{^(.*)/features(/.*)?})
     root_directory = directories[1]
     command = "cucumber"
