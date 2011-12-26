@@ -90,6 +90,12 @@ nmap <silent> <Leader>o :only<CR>:tabonly<CR>
 " run 'q' macro
 nmap Q @q
 
+" show line numbers
+nmap <Leader>2 :set number<CR>
+
+" open quick-fix window at bottom with 5 more lines
+nmap <Leader>7 :copen<CR><C-W>J<C-W>5+
+
 set autochdir
 set autowriteall
 set backspace=indent,eol,start
@@ -100,6 +106,7 @@ set clipboard=unnamed
 set complete=.,w,b,u,t
 set completeopt=menu,preview
 set copyindent
+set cursorline
 set display=lastline
 set equalalways
 set expandtab
@@ -202,11 +209,5 @@ augroup BgHighlight
   autocmd WinLeave * set nonumber
 augroup END
 
-set cursorline
-
 nmap <Leader>n :call ReloadAllSnippets()<CR>
-nmap <Leader>7 :copen<CR><C-W>J<C-W>5+
 nmap <Leader>8 :cope<CR>:cold<CR>
-nmap <Leader>2 :set number<CR>
-
-nmap <Leader>i Oit "should handle this" do<Esc>o@grammar.parse('<Esc>JxA').value<CR>end<CR><Esc>kk<C-J>
