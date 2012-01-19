@@ -25,9 +25,6 @@
 [submodule "bundle/project"]
 	path = bundle/project
 	url = git://github.com/vim-scripts/project.tar.gz
-[submodule "bundle/apidock"]
-	path = bundle/apidock
-	url = git://github.com/vim-scripts/apidock.vim
 [submodule "bundle/NERD-Commenter"]
 	path = bundle/NERD-Commenter
 	url = git://github.com/vim-scripts/The-NERD-Commenter
