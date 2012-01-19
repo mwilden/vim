@@ -111,14 +111,14 @@ def run_test test_type, run_whole_file
   VIM::set_option %{makeprg=#{makeprg.gsub(/ /, '\ ')}}
 
   #VIM::message(makeprg)
-  VIM::command 'make'
+  VIM::command 'make!'
   VIM::command 'cwindow'
 end
 
 def make_spec_errorformat
-  ' %## %f:%l' + 
-  ',' +
   '%Din %f'
+  ','
+  ' %## %f:%l:in `%m'
 end
 
 def set_current_window window
