@@ -105,10 +105,6 @@ nmap <Leader>d :Gdiff<CR>
 " close diff
 nmap <Leader>D <C-W>pZZ
 
-" convert Ruby 1.8 hashrockets to 1.9
-nmap <Leader>; F:xea:ldf>
-nmap <Leader>: xea:f=xx
-
 " disable so Project can use <C-P>
 let g:ctrlp_map = '<C-F1>'
 let g:ctrlp_working_path_mode = 2
@@ -229,3 +225,8 @@ augroup BgHighlight
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
 augroup END
+"
+" convert Ruby 1.8 hashrockets to 1.9
+nmap <Leader>; F:xea:ldf>
+nmap <Leader>: xea:f=xs <Esc>
+
