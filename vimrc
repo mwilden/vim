@@ -18,9 +18,6 @@ imap <silent> <C-S> <ESC><C-s>
 " show/hide Project window
 nmap <silent> <C-P> <F12>
 
-" show most recently used files
-map <silent> <C-Z> :FufMruFile<CR>
-
 " show undo list
 nnoremap <silent> <F3> :GundoToggle<CR>
 
@@ -37,10 +34,6 @@ imap <silent> <S-F6> <ESC><S-F6>
 " close quickfix
 map <silent> <C-F6> <ESC>:ccl<CR>
 
-" show most recently used commands
-map <silent> <M-c> :FufMruCmd<CR>
-imap <silent> <M-c> <ESC><M-c>
-
 " recall most recent command
 map <silent> <M-p> :<C-p>
 imap <silent> <M-p> <ESC><M-p>
@@ -48,10 +41,6 @@ imap <silent> <M-p> <ESC><M-p>
 " execute ruby file
 nmap <silent> <M-x> :!ruby %<CR>
 imap <silent> <M-x> <Esc>≈
-
-" find file in rails hierarchy
-map <M-z> :FufFile =RailsRoot()<CR>/**/
-imap <M-z> <Esc><M-z>
 
 " replace word under cursor
 nmap <Leader>s :%s/\<<C-r><C-w>\>/
@@ -95,6 +84,13 @@ nmap <Leader>2 :set number<CR>
 
 " open quick-fix window at bottom with 5 more lines
 nmap <Leader>7 :copen<CR><C-W>J<C-W>5+
+" disable so Project can use <C-P>
+let g:ctrlp_map = '<C-F1>'
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_jump_to_buffer = 1
+map <silent> <C-Z> :CtrlPMRU<CR>
+map <M-z> :CtrlPRoot<CR>
+imap <M-z> <Esc><M-z>
 
 set autochdir
 set autowriteall
