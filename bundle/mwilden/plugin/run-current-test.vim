@@ -42,12 +42,20 @@ function! RunCurrentTestFile()
   ruby run_current_test true
 endfunction
 
+function! RunCurrentSingleTestWithoutDrb()
+  ruby run_current_test, false
+endfunction
+
+function! RunCurrentTestFileWithoutDrb()
+  ruby run_current_test true, false
+endfunction
+
 ruby << EOF
 
-def run_current_test run_whole_file = false
+def run_current_test run_whole_file = false, use_drb = true
   original_window = VIM::Window.current
   test_type = change_to_window_with_test
-  run_test test_type, run_whole_file
+  run_test test_type, run_whole_file, use_drb
 rescue Exception => e
   VIM::command %{echohl ErrorMsg | echo "#{e.message}" | echohl None}
 ensure
@@ -85,19 +93,25 @@ def get_window_test_type window
   nil
 end
 
-def run_test test_type, run_whole_file
+def run_test test_type, run_whole_file, use_drb
   directory = VIM::evaluate %{expand('%:p:h')}
 
   case test_type
   when :spec
     root_directory = directory.match(%r{^(.*)/spec/?})[1]
     errorformat = make_spec_errorformat
-    command = 'rspec --drb'
+    command = 'rspec'
+    if use_drb
+      command += ' --drb'
+    end
   when :feature
     errorformat = "%m"
     directories = directory.match(%r{^(.*)/features(/.*)?})
     root_directory = directories[1]
-    command = "cucumber --drb --no-color"
+    command = "cucumber --no-color"
+    if use_drb
+      command += ' --drb'
+    end
     if directories[2]
       features_directory = directories[2].gsub '/', ''
       command += " -p #{features_directory}" unless features_directory.empty?
