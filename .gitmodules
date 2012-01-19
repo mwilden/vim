@@ -55,3 +55,6 @@
 [submodule "bundle/vim-browsereload-mac"]
 	path = bundle/vim-browsereload-mac
 	url = https://github.com/tell-k/vim-browsereload-mac.git
+[submodule "bundle/CtrlP"]
+	path = bundle/CtrlP
+	url = https://github.com/kien/ctrlp.vim
