@@ -35,8 +35,8 @@ imap <silent> <S-F6> <ESC><S-F6>
 map <silent> <C-F6> <ESC>:ccl<CR>
 
 " recall most recent command
-map <silent> <M-p> :<C-p>
-imap <silent> <M-p> <ESC><M-p>
+map <M-p> :<C-p>
+imap <M-p> <ESC><M-p>
 
 " execute ruby file
 nmap <silent> <M-x> :!ruby %<CR>
