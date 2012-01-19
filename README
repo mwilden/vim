@@ -13,4 +13,4 @@ Remove bundle:
 
   Remove it from .gitmodules
   Remove it from .git/config
-  Run git rm --cached <path-to-module>
+  rm -rf <path-to-module>
