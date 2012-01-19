@@ -80,10 +80,35 @@ nmap <silent> <Leader>o :only<CR>:tabonly<CR>
 nmap Q @q
 
 " show line numbers
-nmap <Leader>2 :set number<CR>
+nmap <Leader>n :set number<CR>
 
-" open quick-fix window at bottom with 5 more lines
-nmap <Leader>7 :copen<CR><C-W>J<C-W>5+
+" quickfix
+" open quick-fix window at bottom with 2 more lines
+nmap <Leader>q :copen<CR><C-W>J<C-W>4+
+" open older quickfix
+nmap <Leader>8 :cope<CR>:cold<CR>
+" close quickfix
+nmap <Leader>Q :cclose<CR>
+
+" Project
+" grep
+nmap <Leader>G :Project<CR>gg\RzX\G'
+" grep word under cursor
+nmap <Leader>g yiw:Project<CR>gg\RzX\G'<C-R>"'<CR><C-P><Leader>q
+" refresh
+nmap <Leader>p :Project<CR>gg\RzX<C-R>
+
+nmap <Leader>i Oit "should handle this" do<Esc>o@importer.parse('<Esc>JxA').value<CR>end<CR><Esc>kk<C-J>
+
+" open diff
+nmap <Leader>d :Gdiff<CR>
+" close diff
+nmap <Leader>D <C-W>pZZ
+
+" convert Ruby 1.8 hashrockets to 1.9
+nmap <Leader>; F:xea:ldf>
+nmap <Leader>: xea:f=xx
+
 " disable so Project can use <C-P>
 let g:ctrlp_map = '<C-F1>'
 let g:ctrlp_working_path_mode = 2
@@ -204,6 +229,3 @@ augroup BgHighlight
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
 augroup END
-
-nmap <Leader>n :call ReloadAllSnippets()<CR>
-nmap <Leader>8 :cope<CR>:cold<CR>
