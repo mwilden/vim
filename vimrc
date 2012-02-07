@@ -8,8 +8,8 @@ endif
 "call pathogen#helptags()
 
 " save and execute current vim script
-nmap <silent> <C-A> :w<CR>:source %<CR>
-imap <silent> <C-A> <ESC><C-a>
+"nmap <silent> <C-A> :w<CR>:source %<CR>
+"imap <silent> <C-A> <ESC><C-a>
 
 " save file
 nmap <silent> <C-S> :w<CR>
