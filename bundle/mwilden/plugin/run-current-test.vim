@@ -112,10 +112,6 @@ def run_test test_type, run_whole_file, use_drb
     if use_drb
       command += ' --drb'
     end
-    if directories[2]
-      features_directory = directories[2].gsub '/', ''
-      command += " -p #{features_directory}" unless features_directory.empty?
-    end
   end
 
   VIM::command %{let &errorformat='#{errorformat}'}
