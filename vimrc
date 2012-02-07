@@ -15,9 +15,6 @@ endif
 nmap <silent> <C-S> :w<CR>
 imap <silent> <C-S> <ESC><C-s>
 
-" show/hide Project window
-nmap <silent> <C-P> <F12>
-
 " show undo list
 nnoremap <silent> <F3> :GundoToggle<CR>
 
@@ -31,9 +28,6 @@ imap <silent> <S-F5> <ESC><S-F5>
 nmap <silent> <S-F6> :cnewer<CR>
 imap <silent> <S-F6> <ESC><S-F6>
 
-" close quickfix
-map <silent> <C-F6> <ESC>:ccl<CR>
-
 " recall most recent command
 map <M-p> :<C-p>
 imap <M-p> <ESC><M-p>
@@ -46,7 +40,7 @@ imap <silent> <M-x> <Esc>≈
 nmap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " show all occurences of word under cursor
-nmap <silent> <Leader>g :g/\<<C-r><C-w>\><CR>
+nmap <silent> <Leader>w :g/\<<C-r><C-w>\><CR>
 
 " edit this file
 nmap <silent> <Leader>v :tabedit $MYVIMRC<CR>
@@ -74,7 +68,7 @@ nmap <silent> dil ^D"xdd
 onoremap <silent> il :<C-U>normal! 0v$h<CR>
 
 " close other windows and tabs
-nmap <silent> <Leader>o :only<CR>:tabonly<CR>
+nmap <silent> <Leader>o :only<CR>:tabonly<CR>:noh<CR>
 
 " run 'q' macro
 nmap Q @q
@@ -94,24 +88,19 @@ nmap <Leader>Q :cclose<CR>
 " grep
 nmap <Leader>G :Project<CR>gg\RzX\G'
 " grep word under cursor
-nmap <Leader>g yiw:Project<CR>gg\RzX\G'<C-R>"'<CR><C-P><Leader>q
+nmap <Leader>g yiw:Project<CR>gg\RzX\G'\b<C-R>"\b'<CR><C-P><Leader>q
 " refresh
 nmap <Leader>p :Project<CR>gg\RzX<C-R>
+nmap <silent> <C-P> <F12>
+let g:proj_window_width=30
+let g:proj_flags='cgisST'
 
 nmap <Leader>i Oit "should handle this" do<Esc>o@importer.parse('<Esc>JxA').value<CR>end<CR><Esc>kk<C-J>
 
 " open diff
-nmap <Leader>d :Gdiff<CR>
+nmap <Leader>d <C-W>K:Gdiff<CR>
 " close diff
 nmap <Leader>D <C-W>pZZ
-
-" disable so Project can use <C-P>
-let g:ctrlp_map = '<C-F1>'
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_jump_to_buffer = 1
-map <silent> <C-Z> :CtrlPMRU<CR>
-map <M-z> :CtrlPRoot<CR>
-imap <M-z> <Esc><M-z>
 
 set autochdir
 set autowriteall
@@ -205,13 +194,6 @@ if !exists("g:vimrcloaded")
   let g:vimrcloaded = 1
 endif
 
-" Project plugin
-let g:proj_window_width=30
-let g:proj_flags='cgisST'
-
-" FuzzyFinder plugin
-let g:fuf_modesDisable=[]
-
 filetype plugin indent on
 
 runtime macros/matchit.vim
@@ -219,7 +201,7 @@ runtime macros/matchit.vim
 " vim-browserreload-mac
 let g:returnApp = 'MacVim'
 " FirefoxReloadStart to activate
-"
+
 augroup BgHighlight
   autocmd!
   autocmd WinEnter * set number
@@ -228,5 +210,18 @@ augroup END
 "
 " convert Ruby 1.8 hashrockets to 1.9
 nmap <Leader>; F:xea:ldf>
-nmap <Leader>: xea:f=xs <Esc>
+nmap <Leader>: xea:lldW
+"
+" CtrlP
+" disable so Project can use <C-P>
+let g:ctrlp_map = '<C-F1>'
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_jump_to_buffer = 1
+let g:ctrlp_by_filename = 1
+let g:ctrlp_mruf_last_entered = 1
+map <silent> <C-Z> :CtrlPMRU<CR>
+map <silent> <M-z> :CtrlPRoot<CR>
 
+" TabMan
+let g:tabman_number = 0
+let g:tabman_specials = 1
