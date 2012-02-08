@@ -101,19 +101,13 @@ def run_test test_type, run_whole_file, use_drb
     root_directory = directory.match(%r{^(.*)/spec/?})[1]
     errorformat = make_spec_errorformat
     command = 'rspec'
-    if use_drb
-      command += ' --drb'
-    end
   when :feature
-    errorformat = "%m"
     directories = directory.match(%r{^(.*)/features(/.*)?})
     root_directory = directories[1]
     errorformat = "cucumber %f:%l # %m"
     command = "cucumber --no-color"
-    if use_drb
-      command += ' --drb'
-    end
   end
+  command << ' --drb' if use_drb
 
   VIM::command %{let &errorformat='#{errorformat}'}
   file = VIM::evaluate %{expand('%:p')}
