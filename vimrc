@@ -224,4 +224,3 @@ map <silent> <M-z> :CtrlPRoot<CR>
 
 " TabMan
 let g:tabman_number = 0
-let g:tabman_specials = 1
