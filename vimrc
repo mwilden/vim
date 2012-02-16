@@ -7,18 +7,19 @@ if !exists("g:loaded_pathogen")
 endif
 "call pathogen#helptags()
 
-"save and execute current vim script
-nmap <silent> <C-x> :w<CR>:source %<CR>
-imap <silent> <C-x> <ESC><C-a>
-
+""""""""""" maps, commands, abbreviations
 " save file
 nmap <silent> <C-S> :w<CR>
 imap <silent> <C-S> <ESC><C-s>
+"
+"save and execute current vim script
+nmap <silent> <M-v> :w<CR>:source %<CR>
+imap <silent> <M-v> <ESC><C-a>
 
 " show undo list
 nnoremap <silent> <F3> :GundoToggle<CR>
 
-" next/prior error/grep result
+" quick-fix
 nmap <silent> <F5> :cp<CR>
 imap <silent> <F5> <ESC><F5>
 nmap <silent> <F6> :cn<CR>
@@ -27,6 +28,8 @@ nmap <silent> <S-F5> :colder<CR>
 imap <silent> <S-F5> <ESC><S-F5>
 nmap <silent> <S-F6> :cnewer<CR>
 imap <silent> <S-F6> <ESC><S-F6>
+nmap <Leader>q :copen<CR><C-W>J<C-W>4+
+nmap <Leader>Q :cclose<CR>
 
 " recall most recent command
 map <M-p> :<C-p>
@@ -40,7 +43,7 @@ imap <silent> <M-x> <Esc>≈
 nmap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " show all occurences of word under cursor
-nmap <silent> <Leader>w :g/\<<C-r><C-w>\><CR>
+nmap <silent> <Leader>w *N:g/\<<C-r>/\><CR>
 
 " edit this file
 nmap <silent> <Leader>v :tabedit $MYVIMRC<CR>
@@ -76,13 +79,20 @@ nmap Q @q
 " show line numbers
 nmap <Leader>n :set number<CR>
 
-" quickfix
-" open quick-fix window at bottom with 2 more lines
-nmap <Leader>q :copen<CR><C-W>J<C-W>4+
-" open older quickfix
-nmap <Leader>8 :cope<CR>:cold<CR>
-" close quickfix
-nmap <Leader>Q :cclose<CR>
+" convert Ruby 1.8 hashrockets to 1.9
+nmap <Leader>; F:xea:ldf>
+nmap <Leader>: xea:lldW
+
+""""""""""" plugins
+" CtrlP
+" disable so Project can use <C-P>
+let g:ctrlp_map = '<c-f1>'
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_jump_to_buffer = 1
+let g:ctrlp_by_filename = 1
+let g:ctrlp_mruf_last_entered = 1
+let g:ctrlp_max_height = 20
+map <C-Z> :CtrlPMRU<CR>
 
 " Project
 " grep
@@ -90,18 +100,23 @@ nmap <Leader>G :Project<CR>gg\RzX\G'
 " grep word under cursor
 nmap <Leader>g yiw:Project<CR>gg\RzX\G'\b<C-R>"\b'<CR><C-P><Leader>q
 " refresh
-nmap <Leader>p :Project<CR>gg\RzX<C-R>
+nmap <Leader>p :Project<CR>gg\RzXza<C-R>
 nmap <silent> <C-P> <F12>
 let g:proj_window_width=30
 let g:proj_flags='cgisST'
 
-nmap <Leader>i Oit "should handle this" do<Esc>o@importer.parse('<Esc>JxA').value<CR>end<CR><Esc>kk<C-J>
-
+" fugitive
 " open diff
-nmap <Leader>d <C-W>K:Gdiff<CR>
+nmap <Leader>d :Gdiff<CR>
 " close diff
 nmap <Leader>D <C-W>pZZ
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
+""""""""""" vim-browserreload-mac
+let g:returnApp = 'MacVim'
+nmap <Leader>r :bufdo FirefoxReloadStart<cr>:w<cr><cr>
+
+""""""""""" sets
 set autochdir
 set autowriteall
 set backspace=indent,eol,start
@@ -123,7 +138,8 @@ set formatoptions-=r
 set formatoptions-=t
 set gdefault
 set grepprg=ack\ -H\ --nocolor\ --nogroup
-set guifont=Menlo:h12
+set guifont=Menlo:h14
+
 set guioptions+=c
 set guioptions-=T
 set guitablabel=%t
@@ -133,7 +149,9 @@ set ignorecase smartcase
 set incsearch
 set laststatus=2
 set linebreak
-set macmeta
+if has("gui_running")
+  set macmeta
+endif
 set matchtime=2
 set mouse=n
 set nobackup
@@ -166,6 +184,7 @@ set wildmode=list:longest:full
 set winheight=25
 set writeany
 
+""""""""""" autocmds
 " go to line we were on the last time we edited the file
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -187,6 +206,14 @@ autocmd! BufWritePost $MYVIMRC source $MYVIMRC|source $MYGVIMRC
 " set citrus filetype
 autocmd BufRead,BufNewFile *.citrus set filetype=citrus
 
+" turn number on in current window
+augroup BgHighlight
+  autocmd!
+  autocmd WinEnter * set number
+  autocmd WinLeave * set nonumber
+augroup END
+
+""""""""""" other
 if !exists("g:vimrcloaded")
   set lines=82
   set columns=130
@@ -198,29 +225,4 @@ filetype plugin indent on
 
 runtime macros/matchit.vim
 
-" vim-browserreload-mac
-let g:returnApp = 'MacVim'
-" FirefoxReloadStart to activate
-
-augroup BgHighlight
-  autocmd!
-  autocmd WinEnter * set number
-  autocmd WinLeave * set nonumber
-augroup END
-"
-" convert Ruby 1.8 hashrockets to 1.9
-nmap <Leader>; F:xea:ldf>
-nmap <Leader>: xea:lldW
-"
-" CtrlP
-" disable so Project can use <C-P>
-let g:ctrlp_map = '<C-F1>'
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_jump_to_buffer = 1
-let g:ctrlp_by_filename = 1
-let g:ctrlp_mruf_last_entered = 1
-map <silent> <C-Z> :CtrlPMRU<CR>
-map <silent> <M-z> :CtrlPRoot<CR>
-
-" TabMan
-let g:tabman_number = 0
+autocmd! BufWritePost *.vim source %
