@@ -28,6 +28,10 @@
 "endif
 let g:loaded_run_current_test = 1
 
+if !has('ruby')
+  finish
+endif
+
 " Default maps. These work in insert or normal mode.
 nmap <silent> <C-j> :call RunCurrentSingleTest()<CR>
 imap <silent> <C-j> <ESC><C-j>
