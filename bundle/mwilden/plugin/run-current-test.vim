@@ -109,7 +109,7 @@ def run_test test_type, run_whole_file, use_drb
     directories = directory.match(%r{^(.*)/features(/.*)?})
     root_directory = directories[1]
     errorformat = "cucumber %f:%l # %m"
-    command = "cucumber --no-color"
+    command = "cucumber --no-color --profile in_vim"
   end
   command << ' --drb' if use_drb
 
