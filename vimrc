@@ -215,8 +215,8 @@ augroup END
 
 """"""""""" other
 if !exists("g:vimrcloaded")
-  set lines=82
-  set columns=130
+  set lines=85
+  set columns=188
   winpos 0 0
   let g:vimrcloaded = 1
 endif
