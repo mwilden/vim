@@ -204,8 +204,9 @@ autocmd FocusLost *
   \   call feedkeys("\<Esc>") |
   \ endif
 
-" source .vimrc on write
+" source .vimrc, .vim on write
 autocmd! BufWritePost $MYVIMRC source $MYVIMRC|source $MYGVIMRC
+autocmd! BufWritePost *.vim source %
 
 " set citrus filetype
 autocmd BufRead,BufNewFile *.citrus set filetype=citrus
@@ -224,9 +225,7 @@ if !exists("g:vimrcloaded")
   winpos 0 0
   let g:vimrcloaded = 1
 endif
-
 filetype plugin indent on
-
 runtime macros/matchit.vim
 
-autocmd! BufWritePost *.vim source %
+""""""""""" scratch & preview
