@@ -113,8 +113,12 @@ nmap <Leader>D <C-W>pZZ
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 """"""""""" vim-browserreload-mac
+" stay in Vim when reloading FireFox
 let g:returnApp = 'MacVim'
-nmap <Leader>r :bufdo FirefoxReloadStart<cr>:w<cr><cr>
+" reload FireFox when current buffer saved
+nmap <Leader>r :FirefoxReloadStart<cr>:w<cr>
+" stop reloading FireFox (for every buffer)
+nmap <Leader>R :FirefoxReloadStop<cr>:w<cr>
 
 """"""""""" sets
 set autochdir
