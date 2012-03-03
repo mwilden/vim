@@ -84,6 +84,9 @@ nmap <Leader>n :set number<CR>
 nmap <Leader>; F:xea:ldf>
 nmap <Leader>: xea:lldW
 
+" convert double quotes to single quotes
+nmap <Leader>' macs"''a
+
 """"""""""" plugins
 " CtrlP
 " disable so Project can use <C-P>
