@@ -146,7 +146,7 @@ set formatoptions-=r
 set formatoptions-=t
 set gdefault
 set grepprg=ack\ -H\ --nocolor\ --nogroup
-set guifont=Menlo:h14
+set guifont=Menlo:h13
 
 set guioptions+=c
 set guioptions-=T
