@@ -227,6 +227,9 @@ augroup BgHighlight
   autocmd WinLeave * set nonumber
 augroup END
 
+" don't wrap one particular group of files
+autocmd BufRead,BufNewFile names*.txt set nowrap
+
 """"""""""" other
 if !exists("g:vimrcloaded")
   set lines=92
