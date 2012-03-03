@@ -41,6 +41,7 @@ imap <silent> <M-x> <Esc>≈
 
 " replace word under cursor
 nmap <Leader>s :%s/\<<C-r><C-w>\>/
+vmap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " show all occurences of word under cursor
 nmap <silent> <Leader>w *N:g/\<<C-r>/\><CR>
