@@ -100,7 +100,7 @@ map <C-Z> :CtrlPMRU<CR>
 
 " Project
 " grep
-nmap <Leader>G :Project<CR>gg\RzX\G'
+nmap <Leader>G :Project<CR>gg<CR>zX\G'
 " grep word under cursor
 nmap <Leader>g yiw:Project<CR>gg\RzX\G'\b<C-R>"\b'<CR><C-P><Leader>q
 " refresh
