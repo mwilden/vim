@@ -123,6 +123,11 @@ nmap <Leader>fr :FirefoxReloadStart<cr>:w<cr>
 " stop reloading FireFox (for every buffer)
 nmap <Leader>fR :FirefoxReloadStop<cr>:w<cr>
 
+""""""""""" CoffeeScript
+"au 'BufWritePost' *.coffee silent CoffeeMake!
+nmap <silent> <M-x> :CoffeeRun<CR>
+imap <silent> <M-x> <Esc>≈
+
 """"""""""" sets
 set autochdir
 set autowriteall
