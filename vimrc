@@ -114,7 +114,6 @@ let g:proj_flags='cgisST'
 nmap <Leader>d :Gdiff<CR>
 " close diff
 nmap <Leader>D <C-W>pZZ
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 """"""""""" vim-browserreload-mac
 " stay in Vim when reloading FireFox
@@ -177,6 +176,7 @@ set shortmess+=t
 set showbreak=@
 set showcmd
 set showmatch
+set statusline=%F\ %y%m%r%{fugitive#statusline()}%=%-a\ %b\ 0x%B\ %-14.(%c:%l/%L%)\ %P
 set sw=2
 set switchbuf=useopen
 set tabstop=2
