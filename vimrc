@@ -92,7 +92,7 @@ nmap <Leader>' macs"''a
 " disable so Project can use <C-P>
 let g:ctrlp_map = '<c-f1>'
 let g:ctrlp_working_path_mode = 2
-let g:ctrlp_jump_to_buffer = 1
+let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_mruf_last_entered = 1
 let g:ctrlp_max_height = 20
