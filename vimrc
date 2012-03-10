@@ -223,7 +223,7 @@ autocmd! BufWritePost $MYVIMRC source $MYVIMRC|source $MYGVIMRC
 autocmd! BufWritePost *.vim source %
 
 " set citrus filetype
-autocmd BufRead,BufNewFile *.citrus set filetype=citrus
+autocmd BufRead,BufWrite *.citrus set filetype=citrus
 
 " turn number on in current window
 augroup BgHighlight
@@ -242,6 +242,7 @@ if !exists("g:vimrcloaded")
   winpos 0 0
   let g:vimrcloaded = 1
 endif
+
 filetype plugin indent on
 runtime macros/matchit.vim
 
