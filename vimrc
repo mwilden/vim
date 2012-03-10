@@ -10,11 +10,11 @@ endif
 """"""""""" maps, commands, abbreviations
 " save file
 nmap <silent> <C-S> :w<CR>
-imap <silent> <C-S> <ESC><C-s>
+imap <silent> <C-S> <C-O><C-s>
 "
 "save and execute current vim script
 nmap <silent> <M-v> :w<CR>:source %<CR>
-imap <silent> <M-v> <ESC><C-a>
+imap <silent> <M-v> <C-O><C-a>
 
 " show undo list
 nnoremap <silent> <F3> :GundoToggle<CR>
