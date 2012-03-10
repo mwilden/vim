@@ -233,7 +233,7 @@ augroup BgHighlight
 augroup END
 
 " don't wrap one particular group of files
-autocmd BufRead,BufNewFile names*.txt set nowrap
+autocmd BufRead names*.txt set nowrap
 
 """"""""""" other
 if !exists("g:vimrcloaded")
