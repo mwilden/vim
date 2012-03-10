@@ -86,6 +86,10 @@ nmap <Leader>: xea:lldW
 
 " convert double quotes to single quotes
 nmap <Leader>' macs"''a
+" convert single quotes to double quotes
+nmap <Leader>" macs'"'a
+" remove parens but leave a space
+nmap <Leader>( ds(i <Esc>
 
 """"""""""" plugins
 " CtrlP
