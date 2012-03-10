@@ -56,7 +56,7 @@ endfunction
 
 ruby << EOF
 
-def run_current_test run_whole_file = false, use_drb = true
+def run_current_test run_whole_file = false, use_drb = false
   original_window = VIM::Window.current
   test_type = change_to_window_with_test
   run_test test_type, run_whole_file, use_drb
