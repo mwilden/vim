@@ -125,7 +125,8 @@ let g:returnApp = 'MacVim'
 " reload FireFox when current buffer saved
 nmap <Leader>fr :FirefoxReloadStart<cr>:w<cr>
 " stop reloading FireFox (for every buffer)
-nmap <Leader>fR :FirefoxReloadStop<cr>:w<cr>
+nmap <Leader>fR :bufdo FirefoxReloadStop<cr>
+
 
 """"""""""" CoffeeScript
 "au 'BufWritePost' *.coffee silent CoffeeMake!
