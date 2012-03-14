@@ -7,7 +7,7 @@ if !exists("g:loaded_pathogen")
 endif
 "call pathogen#helptags()
 
-""""""""""" maps, commands, abbreviations
+""""""""""" maps, commands
 " save file
 nmap <silent> <C-S> :w<CR>
 imap <silent> <C-S> <C-O><C-s>
@@ -129,9 +129,9 @@ nmap <Leader>fR :bufdo FirefoxReloadStop<cr>
 
 
 """"""""""" CoffeeScript
-"au 'BufWritePost' *.coffee silent CoffeeMake!
-nmap <silent> <M-x> :CoffeeRun<CR>
-imap <silent> <M-x> <Esc>≈
+"autocmd! BufWritePost *.coffee CoffeeMake!
+"nmap <silent> <M-x> :CoffeeRun<CR>
+"imap <silent> <M-x> <C-O>≈
 
 """"""""""" sets
 set autochdir
@@ -203,27 +203,35 @@ set winheight=25
 set writeany
 
 """"""""""" autocmds
-" go to line we were on the last time we edited the file
-autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal g`\"" |
-  \ endif
+augroup mwilden
+  autocmd!
+  " don't wrap one particular group of files
+  autocmd BufRead names*.txt set nowrap
 
-" save when switching applications
-autocmd FocusLost * wa
+  " set markdown filetype
+  autocmd BufRead, BufWrite *.md set filetype=markdown
+  " set citrus filetype
+  autocmd BufRead,BufWrite *.citrus set filetype=citrus
 
-" turn off insert mode when switching applications
-autocmd FocusLost * 
-  \ if mode()[0] =~ 'i\|R' |
-  \   call feedkeys("\<Esc>") |
-  \ endif
+  " go to line we were on the last time we edited the file
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
 
-" source .vimrc, .vim on write
-autocmd! BufWritePost $MYVIMRC source $MYVIMRC|source $MYGVIMRC
-autocmd! BufWritePost *.vim source %
+  " source certain files on write
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC|source $MYGVIMRC
+  autocmd BufWritePost *.vim source %
+  autocmd BufWritePost *.snippets call ReloadAllSnippets()
 
-" set citrus filetype
-autocmd BufRead,BufWrite *.citrus set filetype=citrus
+  " save when switching applications
+  autocmd FocusLost * wa
+  " turn off insert mode when switching applications
+  autocmd FocusLost * 
+    \ if mode()[0] =~ 'i\|R' |
+    \   call feedkeys("\<Esc>") |
+    \ endif
+augroup END
 
 " turn number on in current window
 augroup BgHighlight
@@ -231,9 +239,6 @@ augroup BgHighlight
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
 augroup END
-
-" don't wrap one particular group of files
-autocmd BufRead names*.txt set nowrap
 
 """"""""""" other
 if !exists("g:vimrcloaded")
@@ -247,3 +252,9 @@ filetype plugin indent on
 runtime macros/matchit.vim
 
 """"""""""" scratch & preview
+nmap <leader>8 >>.^iit "should handle this" do<cr>parser.parse "<esc>A"<CR>end<ESC><<<c-j>
+
+autocmd BufReadPost * set formatoptions-=c | set formatoptions-=o | set formatoptions-=r | set formatoptions-=t
+
+iabbrev txi taxonomic_history_item
+iabbrev taxonomic_history_item XXX
