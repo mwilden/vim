@@ -1,3 +1,4 @@
+" header {{{
 set nocompatible
 
 let mapleader = ','
@@ -6,8 +7,9 @@ if !exists("g:loaded_pathogen")
   call pathogen#runtime_append_all_bundles()
 endif
 "call pathogen#helptags()
+"}}}
 
-""""""""""" maps, commands
+" maps {{{
 " save file
 nmap <silent> <C-S> :w<CR>
 imap <silent> <C-S> <C-O><C-s>
@@ -90,8 +92,12 @@ nmap <Leader>' macs"''a
 nmap <Leader>" macs'"'a
 " remove parens but leave a space
 nmap <Leader>( ds(i <Esc>
+"}}}
 
-""""""""""" plugins
+" commands {{{
+"}}}
+
+" plugins {{{
 " CtrlP
 " disable so Project can use <C-P>
 let g:ctrlp_map = '<c-f1>'
@@ -133,12 +139,13 @@ nmap <Leader>fr :FirefoxReloadStart<cr>:w<cr>
 nmap <Leader>fR :bufdo FirefoxReloadStop<cr>
 
 
-""""""""""" CoffeeScript
+" CoffeeScript
 "autocmd! BufWritePost *.coffee CoffeeMake!
 "nmap <silent> <M-x> :CoffeeRun<CR>
 "imap <silent> <M-x> <C-O>≈
+"}}}
 
-""""""""""" sets
+" sets {{{
 set autochdir
 set autowriteall
 set backspace=indent,eol,start
@@ -206,8 +213,9 @@ set wildmenu
 set wildmode=list:longest:full
 set winheight=25
 set writeany
+"}}}
 
-""""""""""" autocmds
+"autocmds {{{
 augroup mwilden
   autocmd!
   " don't wrap one particular group of files
@@ -244,8 +252,9 @@ augroup BgHighlight
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
 augroup END
+"}}}
 
-""""""""""" other
+"other {{{
 if !exists("g:vimrcloaded")
   set lines=92
   set columns=221
@@ -255,8 +264,8 @@ endif
 
 filetype plugin indent on
 runtime macros/matchit.vim
+"}}}
 
-""""""""""" scratch & preview
 nmap <leader>8 >>.^iit "should handle this" do<cr>parser.parse "<esc>A"<CR>end<ESC><<<c-j>
 
 autocmd BufReadPost * set formatoptions-=c | set formatoptions-=o | set formatoptions-=r | set formatoptions-=t
