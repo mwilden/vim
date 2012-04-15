@@ -264,7 +264,7 @@ augroup END
 "other {{{
 if !exists("g:vimrcloaded")
   set lines=92
-  set columns=221
+  set columns=184
   winpos 0 0
   let g:vimrcloaded = 1
 endif
