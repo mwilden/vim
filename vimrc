@@ -248,6 +248,11 @@ augroup mwilden
     \ endif
 augroup END
 
+augroup filetype_vim
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
 " turn number on in current window
 augroup BgHighlight
   autocmd!
