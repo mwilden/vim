@@ -66,9 +66,6 @@ cnoremap <C-D> <Del>
 " go to character, not just line
 nmap <silent> ' `
 
-" write the current buffer even if it requires root access
-command! W w !sudo tee % >/dev/null
-
 " delete inner line
 nmap <silent> dil ^D"xdd
 onoremap <silent> il :<C-U>normal! 0v$h<CR>
@@ -95,6 +92,8 @@ nmap <Leader>( ds(i <Esc>
 "}}}
 
 " commands {{{
+" write the current buffer even if it requires root access
+command! W w !sudo tee % >/dev/null
 "}}}
 
 " plugins {{{
