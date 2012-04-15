@@ -17,7 +17,7 @@ nmap <silent> <M-v> :w<CR>:source %<CR>
 imap <silent> <M-v> <C-O><C-a>
 
 " show undo list
-nnoremap <silent> <F3> :GundoToggle<CR>
+nnoremap <silent> <Leader>U :GundoToggle<CR>
 
 " quick-fix
 nmap <silent> <F5> :cp<CR>
@@ -118,6 +118,11 @@ let g:proj_flags='cgisST'
 nmap <Leader>d :Gdiff<CR>
 " close diff
 nmap <Leader>D <C-W>pZZ
+
+" Gundo
+let g:gundo_width = 30
+let g:gundo_help = 0
+let g:gundo_preview_bottom = 1
 
 """"""""""" vim-browserreload-mac
 " stay in Vim when reloading FireFox
