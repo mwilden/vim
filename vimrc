@@ -72,6 +72,8 @@ onoremap <silent> il :<C-U>normal! 0v$h<CR>
 
 " close other windows and tabs
 nmap <silent> <Leader>o :only<CR>:tabonly<CR>:noh<CR>
+" close everything
+nmap <silent> <Leader>O :%bd<CR>
 
 " run 'q' macro
 nmap Q @q
@@ -80,7 +82,8 @@ nmap Q @q
 nmap <Leader>n :set number<CR>
 
 " convert Ruby 1.8 hashrockets to 1.9
-nmap <Leader>; F:xea:ldf>
+"nmap <Leader>; F:xea:ldf>
+nmap <Leader>; F:,:
 nmap <Leader>: xea:lldW
 
 " convert double quotes to single quotes
@@ -109,9 +112,9 @@ map <C-Z> :CtrlPMRU<CR>
 
 " Project
 " grep
-nmap <Leader>G :Project<CR>gg<CR>zX\G'
+nmap <Leader>g :Project<CR>gg<CR>zX\G'
 " grep word under cursor
-nmap <Leader>g yiw:Project<CR>gg\RzX\G'\b<C-R>"\b'<CR><C-P><Leader>q
+nmap <Leader>G yiw:Project<CR>ggzX\G'\b<C-R>"\b'<CR><C-P><Leader>q
 " refresh
 nmap <Leader>p :Project<CR>gg\RzXza<C-R>
 nmap <silent> <C-P> <F12>
@@ -167,7 +170,6 @@ set formatoptions-=t
 set gdefault
 set grepprg=ack\ -H\ --nocolor\ --nogroup
 set guifont=Menlo:h13
-
 set guioptions+=c
 set guioptions-=T
 set guitablabel=%t
