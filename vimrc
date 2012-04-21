@@ -1,4 +1,3 @@
-" header {{{
 set nocompatible
 
 let mapleader = ','
@@ -7,9 +6,8 @@ if !exists("g:loaded_pathogen")
   call pathogen#runtime_append_all_bundles()
 endif
 "call pathogen#helptags()
-"}}}
 
-" maps {{{
+" maps """""""""""""""""""""""
 " save file
 nmap <silent> <C-S> :w<CR>
 imap <silent> <C-S> <C-O><C-s>
@@ -92,14 +90,12 @@ nmap <Leader>' macs"''a
 nmap <Leader>" macs'"'a
 " remove parens but leave a space
 nmap <Leader>( ds(i <Esc>
-"}}}
 
-" commands {{{
+" commands """""""""""""""""""""""
 " write the current buffer even if it requires root access
 command! W w !sudo tee % >/dev/null
-"}}}
 
-" plugins {{{
+" plugins """""""""""""""""""""""
 " CtrlP
 let g:ctrlp_by_filename = 1
 "let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed']
@@ -146,9 +142,8 @@ nmap <Leader>fR :bufdo FirefoxReloadStop<cr>
 "autocmd! BufWritePost *.coffee CoffeeMake!
 "nmap <silent> <M-x> :CoffeeRun<CR>
 "imap <silent> <M-x> <C-O>≈
-"}}}
 
-" sets {{{
+" sets """""""""""""""""""""""
 set autochdir
 set autowriteall
 set backspace=indent,eol,start
@@ -163,7 +158,6 @@ set cursorline
 set display=lastline
 set equalalways
 set expandtab
-set foldmethod=marker
 set formatoptions-=c
 set formatoptions-=o
 set formatoptions-=r
@@ -215,9 +209,8 @@ set wildmenu
 set wildmode=list:longest:full
 set winheight=25
 set writeany
-"}}}
 
-"autocmds {{{
+"autocmds
 augroup mwilden
   autocmd!
   " don't wrap one particular group of files
@@ -248,20 +241,13 @@ augroup mwilden
     \ endif
 augroup END
 
-augroup filetype_vim
-  autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
 " turn number on in current window
 augroup BgHighlight
   autocmd!
   autocmd WinEnter * set number
   autocmd WinLeave * set nonumber
 augroup END
-"}}}
 
-"other {{{
 if !exists("g:vimrcloaded")
   set lines=92
   set columns=184
@@ -271,7 +257,6 @@ endif
 
 filetype plugin indent on
 runtime macros/matchit.vim
-"}}}
 
 nmap <leader>8 >>.^iit "should handle this" do<cr>parser.parse "<esc>A"<CR>end<ESC><<<c-j>
 
