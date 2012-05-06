@@ -104,6 +104,7 @@ let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_map = '<c-f1>'
 let g:ctrlp_max_height = 20
 let g:ctrlp_mruf_default_order = 1
+let g:ctrlp_mruf_exclude = '.*vimprojects|solr.*'
 let g:ctrlp_mruf_last_entered = 1
 let g:ctrlp_working_path_mode = 2
 map <C-Z> :CtrlPMRU<CR>
