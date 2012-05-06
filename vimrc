@@ -119,6 +119,9 @@ nmap <Leader>p :Project<CR>gg\RzXzo/tags<CR>dd<C-W>p
 nmap <silent> <C-P> <F12>
 let g:proj_window_width=30
 let g:proj_flags='cgisST'
+" keep window open or let it close
+nmap <Leader>po :let g:proj_flags='gisST'<CR>
+nmap <Leader>pc :let g:proj_flags='cgisST'<CR><C-P>
 
 " fugitive
 " open diff
