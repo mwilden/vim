@@ -90,6 +90,7 @@ nmap <Leader>' macs"''a
 nmap <Leader>" macs'"'a
 " remove parens but leave a space
 nmap <Leader>( ds(i <Esc>
+nmap <Leader>) ds(i <Esc>
 
 " commands """""""""""""""""""""""
 " write the current buffer even if it requires root access
