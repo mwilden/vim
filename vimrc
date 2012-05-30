@@ -142,7 +142,6 @@ nmap <Leader>fr :FirefoxReloadStart<cr>:w<cr>
 " stop reloading FireFox (for every buffer)
 nmap <Leader>fR :bufdo FirefoxReloadStop<cr>
 
-
 " CoffeeScript
 "autocmd! BufWritePost *.coffee CoffeeMake!
 "nmap <silent> <M-x> :CoffeeRun<CR>
@@ -269,3 +268,5 @@ autocmd BufReadPost * set formatoptions-=c | set formatoptions-=o | set formatop
 
 iabbrev txi taxonomic_history_item
 iabbrev taxonomic_history_item XXX
+
+let g:syntastic_enable_balloons = 0
