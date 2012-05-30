@@ -82,7 +82,7 @@ nmap <Leader>n :set number<CR>
 " convert Ruby 1.8 hashrockets to 1.9
 "nmap <Leader>; F:xea:ldf>
 nmap <Leader>; F:,:
-nmap <Leader>: xea:lldW
+nmap <Leader>: xea:<Esc>f=xx
 
 " convert double quotes to single quotes
 nmap <Leader>' macs"''a
