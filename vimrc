@@ -143,11 +143,6 @@ nmap <Leader>fr :FirefoxReloadStart<cr>:w<cr>
 " stop reloading FireFox (for every buffer)
 nmap <Leader>fR :bufdo FirefoxReloadStop<cr>
 
-" CoffeeScript
-"autocmd! BufWritePost *.coffee CoffeeMake!
-"nmap <silent> <M-x> :CoffeeRun<CR>
-"imap <silent> <M-x> <C-O>≈
-
 " sets """""""""""""""""""""""
 set autochdir
 set autowriteall
