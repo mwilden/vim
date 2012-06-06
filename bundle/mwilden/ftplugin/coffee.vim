@@ -1,5 +1,5 @@
 " debugging output
-imap <buffer> <C-L> console.log ": " + <Esc>hhhhhi
+imap <buffer> <C-L> console.log 
 nmap <buffer> <C-L> O<C-L>
 function! Unlll()
   g/console\./d
