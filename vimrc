@@ -80,14 +80,13 @@ nmap Q @q
 nmap <Leader>n :set number<CR>
 
 " convert Ruby 1.8 hashrockets to 1.9
-"nmap <Leader>; F:xea:ldf>
-nmap <Leader>; F:,:
-nmap <Leader>: xea:<Esc>f=xx
+nnoremap <Leader>; F:,:
+nnoremap <Leader>: xea:<Esc>ldf>
 
 " convert double quotes to single quotes
-nmap <Leader>' macs"''a
+nnoremap <Leader>' macs"''a
 " convert single quotes to double quotes
-nmap <Leader>" macs'"'a
+nnoremap <Leader>" macs'"'a
 " remove parens but leave a space
 nmap <Leader>( ds(i <Esc>
 nmap <Leader>) ds(i <Esc>
@@ -178,7 +177,7 @@ if has("gui_running")
   set macmeta
 endif
 set matchtime=2
-set mouse=n
+set mouse=a
 set nobackup
 set noerrorbells
 set nostartofline
