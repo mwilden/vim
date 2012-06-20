@@ -84,9 +84,9 @@ nnoremap <Leader>; F:,:
 nnoremap <Leader>: xea:<Esc>ldf>
 
 " convert double quotes to single quotes
-nnoremap <Leader>' macs"''a
+nmap <Leader>' macs"''a
 " convert single quotes to double quotes
-nnoremap <Leader>" macs'"'a
+nmap <Leader>" macs'"'a
 " remove parens but leave a space
 nmap <Leader>( ds(i <Esc>
 nmap <Leader>) ds(i <Esc>
