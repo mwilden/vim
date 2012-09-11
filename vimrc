@@ -28,7 +28,7 @@ nmap <silent> <S-F5> :colder<CR>
 imap <silent> <S-F5> <ESC><S-F5>
 nmap <silent> <S-F6> :cnewer<CR>
 imap <silent> <S-F6> <ESC><S-F6>
-nmap <Leader>q :copen<CR><C-W>J<C-W>4+
+nmap <Leader>q :copen<CR><C-W>J<C-W>4+<C-W>p
 nmap <Leader>Q :cclose<CR>
 
 " recall most recent command
@@ -90,7 +90,8 @@ nmap <Leader>" macs'"'a
 " remove parens but leave a space
 nmap <Leader>( ds(i <Esc>
 nmap <Leader>) ds(i <Esc>
-
+" add parens from cursor through end of line
+nmap <Leader>[ xv$hs)
 " commands """""""""""""""""""""""
 " write the current buffer even if it requires root access
 command! W w !sudo tee % >/dev/null
