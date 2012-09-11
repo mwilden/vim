@@ -173,38 +173,39 @@ set linebreak
 if has("gui_running")
   set macmeta
 endif
-set matchtime=2
-set mouse=a
+set   matchtime=2
+set   mouse=a
 set nobackup
 set noerrorbells
 set nostartofline
 set noswapfile
-set number
-set numberwidth=3
-set printoptions=syntax:n
-set printheader=%F%=Page\ %N
-set ruler
-set scrolloff=1
-set shiftround
-set shortmess+=t
-set showbreak=@
-set showcmd
-set showmatch
-set statusline=%F\ %y%m%r%{fugitive#statusline()}%=%-a\ %b\ 0x%B\ %-14.(%c:%l/%L%)\ %P
-set sw=2
-set switchbuf=useopen
-set tabstop=2
-set textwidth=72
-set tildeop
+set   number
+set   numberwidth=3
+set   printoptions=syntax:n
+set   printheader=%F%=Page\ %N
+set   ruler
+set   scrolloff=1
+set   shiftround
+set   shortmess+=t
+set   showbreak=@
+set   showcmd
+set   showmatch
+set   statusline=%F\ %y%m%r%{fugitive#statusline()}%=%-a\ %b\ 0x%B\ %-14.(%c:%l/%L%)\ %P
+set   sw=2
+set   switchbuf=useopen
+set   tabstop=2
+set   textwidth=72
+set   tildeop
 if v:version >= 703
   set undofile
   set undodir=/tmp
 endif
-set visualbell
-set wildmenu
-set wildmode=list:longest:full
-set winheight=25
-set writeany
+set   visualbell
+set nowritebackup
+set   wildmenu
+set   wildmode=list:longest:full
+set   winheight=25
+set   writeany
 
 "autocmds
 augroup mwilden
