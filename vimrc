@@ -136,6 +136,7 @@ let g:gundo_preview_bottom = 1
 let g:returnApp = 'MacVim'
 " reload FireFox when current buffer saved
 nmap <Leader>fr :FirefoxReloadStart<cr>:w<cr>
+
 " stop reloading FireFox (for every buffer)
 nmap <Leader>fR :bufdo FirefoxReloadStop<cr>
 
@@ -255,11 +256,4 @@ endif
 filetype plugin indent on
 runtime macros/matchit.vim
 
-nmap <leader>8 >>.^iit "should handle this" do<cr>parser.parse "<esc>A"<CR>end<ESC><<<c-j>
-
 autocmd BufReadPost * set formatoptions-=c | set formatoptions-=o | set formatoptions-=r | set formatoptions-=t
-
-iabbrev txi taxonomic_history_item
-iabbrev taxonomic_history_item XXX
-
-let g:syntastic_enable_balloons = 0
