@@ -101,7 +101,7 @@ let g:ctrlp_by_filename = 1
 " disable so Project can use <C-P>
 let g:ctrlp_map = '<c-f1>'
 let g:ctrlp_max_height = 35
-let g:ctrlp_mruf_default_order = 1
+let g:ctrlp_mruf_default_order = 0
 let g:ctrlp_switch_buffer = 1
 let g:ctrlp_working_path_mode = 2
 map <C-Z> :CtrlPMRU<CR>
