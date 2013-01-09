@@ -102,7 +102,7 @@ let g:ctrlp_by_filename = 1
 " disable so Project can use <C-P>
 let g:ctrlp_map = '<c-f1>'
 let g:ctrlp_max_height = 35
-let g:ctrlp_mruf_default_order = 0
+let g:ctrlp_mruf_default_order = 1
 let g:ctrlp_switch_buffer = 1
 let g:ctrlp_working_path_mode = 2
 map <C-Z> :CtrlPMRU<CR>
@@ -111,7 +111,7 @@ map <C-Z> :CtrlPMRU<CR>
 " grep
 nmap <Leader>g :Project<CR>gg<CR>zX\G'
 " grep word under cursor
-nmap <Leader>G yiw:Project<CR>ggzX\G'\b<C-R>"\b'<CR><C-P><Leader>q
+nmap <Leader>G yiw:Project<CR>ggzX\G'\b<C-R>"\b'<CR><C-P><Leader>qb
 " refresh
 nmap <Leader>p :Project<CR>gg\RzXzo<C-W>p
 nmap <silent> <C-P> <F12>
