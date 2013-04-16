@@ -61,3 +61,9 @@
 [submodule "bundle/AutoComplPop"]
 	path = bundle/AutoComplPop
 	url = https://github.com/vim-scripts/AutoComplPop.git
+[submodule "bundle/vim-jquery-doc"]
+	path = bundle/vim-jquery-doc
+	url = git://github.com/lucapette/vim-jquery-doc.git
+[submodule "bundle/vim-ruby-doc"]
+	path = bundle/vim-ruby-doc
+	url = git://github.com/lucapette/vim-ruby-doc.git
