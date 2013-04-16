@@ -20,6 +20,7 @@ imap <silent> <M-v> <C-O><C-a>
 nnoremap <silent> <Leader>U :GundoToggle<CR>
 
 " quick-fix
+nmap <silent> <Space> :cn<CR>
 nmap <silent> <F5> :cp<CR>
 imap <silent> <F5> <ESC><F5>
 nmap <silent> <F6> :cn<CR>
@@ -28,7 +29,7 @@ nmap <silent> <S-F5> :colder<CR>
 imap <silent> <S-F5> <ESC><S-F5>
 nmap <silent> <S-F6> :cnewer<CR>
 imap <silent> <S-F6> <ESC><S-F6>
-nmap <Leader>q :copen<CR><C-W>J<C-W>4+<C-W>p
+nmap <Leader>q :copen<CR><C-W>J<C-W>4+
 nmap <Leader>Q :cclose<CR>
 
 " recall most recent command
@@ -98,7 +99,7 @@ command! W w !sudo tee % >/dev/null
 
 " plugins """""""""""""""""""""""
 " CtrlP
-let g:ctrlp_by_filename = 1
+let g:ctrlp_by_filename = 0
 " disable so Project can use <C-P>
 let g:ctrlp_map = '<c-f1>'
 let g:ctrlp_max_height = 35
@@ -186,7 +187,7 @@ set   numberwidth=3
 set   printoptions=syntax:n
 set   printheader=%F%=Page\ %N
 set   ruler
-set   scrolloff=1
+set   scrolloff=3
 set   shiftround
 set   shortmess+=t
 set   showbreak=@
@@ -258,3 +259,8 @@ filetype plugin indent on
 runtime macros/matchit.vim
 
 autocmd BufReadPost * set formatoptions-=c | set formatoptions-=o | set formatoptions-=r | set formatoptions-=t
+
+let g:ruby_doc_command='open'
+let g:jquery_doc_command='open'
+let g:jquery_doc_mapping='RJ'
+execute "noremap <silent> ".g:jquery_doc_mapping." :call jquerydoc#search(expand('<cword>'))<CR>"
