@@ -154,7 +154,7 @@ set formatoptions-=o
 set formatoptions-=r
 set formatoptions-=t
 set gdefault
-set grepprg=ack\ -H\ --nocolor\ --nogroup
+set grepprg=ack\ --with-filename\ --nogroup
 set guifont=Menlo:h13
 set guioptions+=c
 set guioptions-=T
