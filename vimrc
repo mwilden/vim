@@ -134,15 +134,6 @@ let g:gundo_width = 30
 let g:gundo_help = 0
 let g:gundo_preview_bottom = 1
 
-""""""""""" vim-browserreload-mac
-" stay in Vim when reloading FireFox
-let g:returnApp = 'MacVim'
-" reload FireFox when current buffer saved
-nmap <Leader>fr :FirefoxReloadStart<cr>:w<cr>
-
-" stop reloading FireFox (for every buffer)
-nmap <Leader>fR :bufdo FirefoxReloadStop<cr>
-
 " sets """""""""""""""""""""""
 set autochdir
 set autowriteall
