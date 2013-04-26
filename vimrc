@@ -21,6 +21,7 @@ nnoremap <silent> <Leader>U :GundoToggle<CR>
 
 " quick-fix
 nmap <silent> <Space> :cn<CR>
+nmap <silent> <S-Space> :cp<CR>
 nmap <silent> <F5> :cp<CR>
 imap <silent> <F5> <ESC><F5>
 nmap <silent> <F6> :cn<CR>
