@@ -220,7 +220,8 @@ augroup mwilden
     \ endif
 
   " source certain files on write
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC|source $MYGVIMRC
+  autocmd BufWritePost $MYVIMRC so $MYVIMRC
+  autocmd BufWritePost $MYGVIMRC so $MYGVIMRC
   autocmd BufWritePost *.vim source %
   autocmd BufWritePost *.snippets call ReloadAllSnippets()
 
