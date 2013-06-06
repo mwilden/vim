@@ -67,3 +67,6 @@
 [submodule "bundle/vim-ruby-doc"]
 	path = bundle/vim-ruby-doc
 	url = git://github.com/lucapette/vim-ruby-doc.git
+[submodule "bundle/dbext"]
+	path = bundle/dbext
+	url = git://github.com/vim-scripts/dbext.vim.git
