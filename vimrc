@@ -71,7 +71,7 @@ nmap <silent> dil ^D"xdd
 onoremap <silent> il :<C-U>normal! 0v$h<CR>
 
 " close other windows and tabs
-nmap <silent> <Leader>o :only<CR>:tabonly<CR>:noh<CR>
+nmap <silent> <Leader>o :only<CR>:tabonly<CR>:e<CR>
 " close everything
 nmap <silent> <Leader>O :bufdo bd<CR>
 
@@ -113,7 +113,8 @@ map <C-Z> :CtrlPMRU<CR>
 " grep
 nmap <Leader>g :Project<CR>gg<CR>zX\G'
 " grep word under cursor
-nmap <Leader>G yiw:Project<CR>ggzX\G'\b<C-R>"\b'<CR><C-P><Leader>qb
+nmap <Leader>G yiw
+nmap <Leader>G yiw:Project<CR>ggzX\G'\b<C-R>"\b'<CR><C-P><Leader>qb<Bar>:let @/ = @"<CR><Bar>:echo @"<CR>
 " refresh
 nmap <Leader>p :Project<CR>gg\RzXzo<C-W>p
 nmap <silent> <C-P> <F12>
@@ -260,3 +261,5 @@ execute "noremap <silent> ".g:jquery_doc_mapping." :call jquerydoc#search(expand
 
 let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=:dbname=antcat_development'
 let g:dbext_default_profile = 'mysql_local'
+
+nmap <Leader>e :e<CR>
