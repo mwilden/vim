@@ -94,6 +94,10 @@ nmap <Leader>( ds(i <Esc>
 nmap <Leader>) ds(i <Esc>
 " add parens from cursor through end of line
 nmap <Leader>[ xv$hs)
+
+" re-edit file (to get syntax highlighting back)
+nmap <Leader>e :e<CR>
+
 " commands """""""""""""""""""""""
 " write the current buffer even if it requires root access
 command! W w !sudo tee % >/dev/null
@@ -134,6 +138,16 @@ nmap <Leader>D <C-W>pZZ
 let g:gundo_width = 30
 let g:gundo_help = 0
 let g:gundo_preview_bottom = 1
+
+" Ruby & jQuery doc
+let g:ruby_doc_command='open'
+let g:jquery_doc_command='open'
+let g:jquery_doc_mapping='RJ'
+execute "noremap <silent> ".g:jquery_doc_mapping." :call jquerydoc#search(expand('<cword>'))<CR>"
+
+" dbext
+let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=:dbname=antcat_development'
+let g:dbext_default_profile = 'mysql_local'
 
 " sets """""""""""""""""""""""
 set autochdir
@@ -233,6 +247,7 @@ augroup mwilden
     \ if mode()[0] =~ 'i\|R' |
     \   call feedkeys("\<Esc>") |
     \ endif
+
 augroup END
 
 " turn number on in current window
@@ -252,14 +267,10 @@ endif
 filetype plugin indent on
 runtime macros/matchit.vim
 
-autocmd BufReadPost * set formatoptions-=c | set formatoptions-=o | set formatoptions-=r | set formatoptions-=t
+" Some process seems to reset these values
+" -c don't auto-wrap comments
+" -o don't insert comment leader
+" -r don't insert comment leader
+" -t don't autowrap text
+"autocmd BufReadPost * set formatoptions-=c | set formatoptions-=o | set formatoptions-=r | set formatoptions-=t
 
-let g:ruby_doc_command='open'
-let g:jquery_doc_command='open'
-let g:jquery_doc_mapping='RJ'
-execute "noremap <silent> ".g:jquery_doc_mapping." :call jquerydoc#search(expand('<cword>'))<CR>"
-
-let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=:dbname=antcat_development'
-let g:dbext_default_profile = 'mysql_local'
-
-nmap <Leader>e :e<CR>
