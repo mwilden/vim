@@ -117,8 +117,7 @@ map <C-Z> :CtrlPMRU<CR>
 " grep
 nmap <Leader>g :Project<CR>gg<CR>zX\G'
 " grep word under cursor
-nmap <Leader>G yiw
-nmap <Leader>G yiw:Project<CR>ggzX\G'\b<C-R>"\b'<CR><C-P><Leader>qb<Bar>:let @/ = @"<CR><Bar>:echo @"<CR>
+nmap <Leader>G yiw:Project<CR>ggzX\G'\b<C-R>"\b'<CR><C-P><Leader>qb<Bar>:let @/ = @"<CR>
 " refresh
 nmap <Leader>p :Project<CR>gg\RzXzo<C-W>p
 nmap <silent> <C-P> <F12>
