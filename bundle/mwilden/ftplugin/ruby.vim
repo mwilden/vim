@@ -13,5 +13,6 @@ function! Unlll()
 endfunction
 nmap <buffer> <leader>u :call Unlll()<CR>
 
-" surround a preprocessed line with test scaffold to see why it doesn't work
-nmap <Leader>9 Oit "should work" do<Esc>jI<Tab><Tab><Tab><Tab>@grammar.parse(%{A})end<Esc><C-J>
+" run the current Ruby file
+nmap <buffer> <C-X> :!ruby %<CR>
+imap <buffer> <C-X> <Esc><C-X>
