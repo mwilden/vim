@@ -130,9 +130,9 @@ nmap <Leader>pc :let g:proj_flags='cgisST'<CR><C-P>
 
 " fugitive
 " open diff
-nmap <Leader>d :Gdiff<CR>
+nmap <Leader>d :Gdiff<CR><Leader><Space>
 " close diff
-nmap <Leader>D <C-W>pZZ
+nmap <Leader>D <C-W>pZZ<Leader><Space>
 
 " Gundo
 let g:gundo_width = 30
