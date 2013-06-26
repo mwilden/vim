@@ -111,7 +111,7 @@ let g:ctrlp_max_height = 35
 let g:ctrlp_mruf_default_order = 1
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_switch_buffer = 'ev'
-let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_working_path_mode = 0
 map <C-Z> :CtrlPMRU<CR>
 
 " Project
