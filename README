@@ -14,3 +14,9 @@ Remove bundle:
   Remove it from .gitmodules
   Remove it from .git/config
   rm -rf <path-to-module>
+
+To resurrect after deleting the bundle directory:
+1. Look in gitx to see the name
+2. git co bundle/foo
+3. git submodule update -- bundle/foo
+
