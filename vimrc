@@ -5,7 +5,7 @@ let mapleader = ','
 if !exists("g:loaded_pathogen")
   call pathogen#runtime_append_all_bundles()
 endif
-"call pathogen#helptags()
+call pathogen#helptags()
 
 " maps """""""""""""""""""""""
 " save file
