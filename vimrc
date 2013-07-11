@@ -71,7 +71,7 @@ nmap <silent> dil ^D"xdd
 onoremap <silent> il :<C-U>normal! 0v$h<CR>
 
 " close other windows and tabs
-nmap <silent> <Leader>o :only<CR>:tabonly<CR>:e<CR>
+nmap <silent> <Leader>o :only<CR>:tabonly<CR>:noh<CR>
 " close everything
 nmap <silent> <Leader>O :bufdo bd<CR>
 
