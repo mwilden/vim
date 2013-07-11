@@ -55,3 +55,6 @@
 [submodule "bundle/vim-ruby-doc"]
 	path = bundle/vim-ruby-doc
 	url = git://github.com/lucapette/vim-ruby-doc.git
+[submodule "/Users/mwilden/.vim/bundle/tabular"]
+	path = /Users/mwilden/.vim/bundle/tabular
+	url = git://github.com/godlygeek/tabular.git
