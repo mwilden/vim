@@ -271,3 +271,9 @@ filetype plugin indent on
 runtime macros/matchit.vim
 
 map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
+
+let g:signify_vcs_list = [ 'git' ]
+let g:signify_line_highlight = 0
+let g:signify_update_on_bufenter = 1
+let g:signify_cursorhold_normal = 1
+let g:signify_cursorhold_insert = 1
