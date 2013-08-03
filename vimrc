@@ -151,6 +151,10 @@ execute "noremap <silent> ".g:jquery_doc_mapping." :call jquerydoc#search(expand
 let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=:dbname=antcat_development'
 let g:dbext_default_profile = 'mysql_local'
 
+" save to temporary file
+map <Leader>wip :sav! ~/it
+imap <Leader>wip <ESC><Leader>wip
+
 " sets """""""""""""""""""""""
 set   autochdir
 set   autowriteall
@@ -272,5 +276,7 @@ endif
 filetype plugin indent on
 runtime macros/matchit.vim
 
+" debugging
+" show the highlight color under the cursor
 map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 
