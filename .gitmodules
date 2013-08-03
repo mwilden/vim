@@ -61,3 +61,6 @@
 [submodule "bundle/AutoTag"]
 	path = bundle/AutoTag
 	url = https://github.com/vim-scripts/AutoTag.git
+[submodule "bundle/vim-snipmate"]
+	path = bundle/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
