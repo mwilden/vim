@@ -58,3 +58,6 @@
 [submodule "/Users/mwilden/.vim/bundle/tabular"]
 	path = /Users/mwilden/.vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
+[submodule "bundle/AutoTag"]
+	path = bundle/AutoTag
+	url = https://github.com/vim-scripts/AutoTag.git
