@@ -242,7 +242,6 @@ augroup mwilden
   autocmd BufWritePost $MYGVIMRC so %
   autocmd BufWritePost vimrc so so %
   autocmd BufWritePost *.vim source %
-  autocmd BufWritePost *.snippets call ReloadAllSnippets()
 
   " save when switching applications
   autocmd FocusLost * wa
