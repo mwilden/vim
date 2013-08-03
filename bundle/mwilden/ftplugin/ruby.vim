@@ -16,3 +16,6 @@ nmap <buffer> <leader>u :call Unlll()<CR>
 " run the current Ruby file
 nmap <buffer> <C-X> :!ruby %<CR>
 imap <buffer> <C-X> <Esc><C-X>
+
+" go to bottom of last visual block and put 'end' after it
+nmap <Leader>end '>oend<Esc>''
