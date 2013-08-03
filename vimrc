@@ -150,45 +150,44 @@ let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=:dbname=a
 let g:dbext_default_profile = 'mysql_local'
 
 " sets """""""""""""""""""""""
-set autochdir
-set autowriteall
-set backspace=indent,eol,start
-set breakat-=:
-set breakat-=_
-set browsedir=current
-set clipboard=unnamed
-set complete=.,w,b,u,t
-set completeopt=menu,preview
-set copyindent
-set cursorline
-set display=lastline
-set equalalways
-set expandtab
-set formatoptions-=c
-set formatoptions-=o
-set formatoptions-=r
-set formatoptions-=t
-set gdefault
-set grepprg=ack\ --with-filename\ --nogroup
-set guifont=Menlo:h13
-set guioptions+=c
-set guioptions-=T
-set guitablabel=%t
-set history=200
-set hlsearch
-set ignorecase smartcase
-set incsearch
-set laststatus=2
-set linebreak
+set   autochdir
+set   autowriteall
+set   backspace=indent,eol,start
+set nobackup
+set   breakat-=:
+set   breakat-=_
+set   browsedir=current
+set   clipboard=unnamed
+set   complete=.,w,b,u,t
+set   completeopt=menu,preview
+set   copyindent
+set   cursorline
+set   display=lastline
+set   equalalways
+set   expandtab
+set noerrorbells
+set nofoldenable
+set   formatoptions-=c
+set   formatoptions-=o
+set   formatoptions-=r
+set   formatoptions-=t
+set   gdefault
+set   grepprg=ack\ --with-filename\ --nogroup
+set   guifont=Menlo:h13
+set   guioptions+=c
+set   guioptions-=T
+set   guitablabel=%t
+set   history=200
+set   hlsearch
+set   ignorecase smartcase
+set   incsearch
+set   laststatus=2
+set   linebreak
 if has("gui_running")
   set macmeta
 endif
 set   matchtime=2
 set   mouse=a
-set nobackup
-set noerrorbells
-set nostartofline
-set noswapfile
 set   number
 set   numberwidth=3
 set   printoptions=syntax:n
@@ -200,8 +199,10 @@ set   shortmess+=t
 set   showbreak=@
 set   showcmd
 set   showmatch
+set nostartofline
 set   statusline=%F\ %y%m%r%{fugitive#statusline()}%=%-a\ %b\ 0x%B\ %-14.(%c:%l/%L%)\ %P
 set   sw=2
+set noswapfile
 set   switchbuf=useopen
 set   tabstop=2
 set   textwidth=72
