@@ -268,8 +268,8 @@ augroup BgHighlight
 augroup END
 
 if !exists("g:vimrcloaded")
-  set columns=184
-  winpos 0 0
+  set columns=156
+  set lines=284
   let g:vimrcloaded = 1
 endif
 
