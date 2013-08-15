@@ -95,8 +95,6 @@ nmap <Leader>) ds(i <Esc>
 " add parens from cursor through end of line
 nmap <Leader>[ xv$hs)
 
-" re-edit file (to get syntax highlighting back)
-nmap <Leader>e :e<CR>
 " save to temporary file
 map <Leader>wip :sav! ~/it<CR>
 
