@@ -152,9 +152,8 @@ let g:ruby_doc_command='open'
 let g:jquery_doc_command='open'
 let g:jquery_doc_mapping='RJ'
 execute "noremap <silent> ".g:jquery_doc_mapping." :call jquerydoc#search(expand('<cword>'))<CR>"
-" save to temporary file
-map <Leader>wip :sav! ~/it
-imap <Leader>wip <ESC><Leader>wip
+let g:ruby_doc_command='open'
+"let g:ruby_doc_ruby_host='http://apidock.com/ruby/'
 
 " sets """""""""""""""""""""""
 set   autochdir
@@ -276,10 +275,3 @@ endif
 
 filetype plugin indent on
 runtime macros/matchit.vim
-
-" debugging
-" show the highlight color under the cursor
-map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
-
-let g:ruby_doc_command='open'
-"let g:ruby_doc_ruby_host='http://apidock.com/ruby/'
