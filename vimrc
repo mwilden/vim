@@ -153,7 +153,7 @@ let g:jquery_doc_command='open'
 let g:jquery_doc_mapping='RJ'
 execute "noremap <silent> ".g:jquery_doc_mapping." :call jquerydoc#search(expand('<cword>'))<CR>"
 let g:ruby_doc_command='open'
-"let g:ruby_doc_ruby_host='http://apidock.com/ruby/'
+let g:ruby_doc_ruby_host='http://apidock.com/ruby/search/quick?query='
 
 " sets """""""""""""""""""""""
 set   autochdir
