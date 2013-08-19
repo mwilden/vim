@@ -252,3 +252,5 @@ endif
 
 filetype plugin indent on
 runtime macros/matchit.vim
+
+botright cwindow
