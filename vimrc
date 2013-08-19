@@ -153,11 +153,6 @@ let g:jquery_doc_command='open'
 let g:jquery_doc_mapping='RJ'
 execute "noremap <silent> ".g:jquery_doc_mapping." :call jquerydoc#search(expand('<cword>'))<CR>"
 
-" dbext
-let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=:dbname=antcat_development'
-let g:dbext_default_profile = 'mysql_local'
-
-
 " sets """""""""""""""""""""""
 set   autochdir
 set   autowriteall
