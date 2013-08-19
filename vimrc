@@ -11,26 +11,11 @@ call pathogen#helptags()
 " save file
 nmap <silent> <C-S> :w<CR>
 imap <silent> <C-S> <C-O><C-s>
-"
-"save and execute current vim script
-nmap <silent> <M-v> :w<CR>:source %<CR>
-imap <silent> <M-v> <C-O><C-a>
-
-" show undo list
-nnoremap <silent> <Leader>U :GundoToggle<CR>
 
 " quick-fix
 nmap <silent> <Space> :cn<CR>
 nmap <silent> <S-Space> :cp<CR>
-nmap <silent> <F5> :cp<CR>
-imap <silent> <F5> <ESC><F5>
-nmap <silent> <F6> :cn<CR>
-imap <silent> <F6> <ESC><F6>
-nmap <silent> <S-F5> :colder<CR>
-imap <silent> <S-F5> <ESC><S-F5>
-nmap <silent> <S-F6> :cnewer<CR>
-imap <silent> <S-F6> <ESC><S-F6>
-nmap <Leader>q :copen<CR><C-W>J<C-W>4+
+nmap <Leader>q :copen<CR><C-W>J
 nmap <Leader>Q :cclose<CR><C-P>
 
 " re-execute most recent command
@@ -142,11 +127,6 @@ nmap <Leader>d :Gdiff<CR><Leader><Space>
 " close diff
 nmap <Leader>D <C-W>pZZ<Leader><Space>
 
-" Gundo
-let g:gundo_width = 30
-let g:gundo_help = 0
-let g:gundo_preview_bottom = 1
-
 " Ruby & jQuery doc
 let g:ruby_doc_command='open'
 let g:jquery_doc_command='open'
@@ -227,9 +207,6 @@ set   writeany
 "autocmds
 augroup mwilden
   autocmd!
-  " don't wrap one particular group of files
-  autocmd BufRead names*.txt set nowrap
-
   " set markdown filetype
   autocmd BufRead, BufWrite *.md set filetype=markdown
   " set citrus filetype
