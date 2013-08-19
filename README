@@ -1,4 +1,4 @@
-Installation:
+Initial installation:
 
   git clone git://github.com/mwilden/vim.git ~/.vim
   ln -s ~/.vim/vimrc ~/.vimrc
@@ -7,12 +7,30 @@ Installation:
 
 Add bundle:
 
+  cd ~/.vim
   git submodule add <plugin-repository-url> bundle/<plugin-name>
+  git add .
+  git commit -m "Add plugin"
+
+Update bundle:
+
+  cd ~/.vim/bundle/<plugin-name>
+  git pull origin master
+
+Update all bundles:
+  cd ~/.vim
+  git submodule foreach git pull origin master
 
 Remove bundle:
 
   Remove it from .gitmodules
   Remove it from .git/config
+  git rm --cached bundle/<plugin-name>
+  git commit -a "Remove plugin"
+  git push
+
+or
+
   rm -rf <path-to-module>
 
 To resurrect after deleting the bundle directory:
