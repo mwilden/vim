@@ -98,6 +98,11 @@ nmap <Leader>[ xv$hs)
 " save to temporary file
 map <Leader>wip :sav! ~/it<CR>
 
+" show trailing spaces
+map <Leader><Space><Space> / \v[^\w]\s+$<CR>
+
+" show the highlight color under the cursor
+map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 
 " commands """""""""""""""""""""""
 " write the current buffer even if it requires root access
@@ -275,8 +280,5 @@ filetype plugin indent on
 runtime macros/matchit.vim
 
 " debugging
-" show the highlight color under the cursor
-map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
-
 let g:ruby_doc_command='open'
 "let g:ruby_doc_ruby_host='http://apidock.com/ruby/'
