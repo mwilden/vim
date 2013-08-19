@@ -95,8 +95,9 @@ nmap <Leader>) ds(i <Esc>
 " add parens from cursor through end of line
 nmap <Leader>[ xv$hs)
 
-" re-edit file (to get syntax highlighting back)
-nmap <Leader>e :e<CR>
+" save to temporary file
+map <Leader>wip :sav! ~/it<CR>
+
 
 " commands """""""""""""""""""""""
 " write the current buffer even if it requires root access
@@ -151,9 +152,6 @@ execute "noremap <silent> ".g:jquery_doc_mapping." :call jquerydoc#search(expand
 let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=:dbname=antcat_development'
 let g:dbext_default_profile = 'mysql_local'
 
-" save to temporary file
-map <Leader>wip :sav! ~/it
-imap <Leader>wip <ESC><Leader>wip
 
 " sets """""""""""""""""""""""
 set   autochdir
