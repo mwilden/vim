@@ -84,7 +84,7 @@ nmap <Leader>[ xv$hs)
 map <Leader>wip :sav! ~/it<CR>
 
 " show trailing spaces
-map <Leader><Space><Space> / \v[^\w]\s+$<CR>
+map <Leader><Space><Space> /\v[^\s]\zs\s+$<CR>
 
 " show the highlight color under the cursor
 map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
