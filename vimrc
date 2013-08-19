@@ -33,8 +33,8 @@ imap <silent> <S-F6> <ESC><S-F6>
 nmap <Leader>q :copen<CR><C-W>J<C-W>4+
 nmap <Leader>Q :cclose<CR><C-P>
 
-" recall most recent command
-map <M-p> :<C-p>
+" re-execute most recent command
+map <M-p> :<C-p><CR>
 imap <M-p> <ESC><M-p>
 
 " execute ruby file
