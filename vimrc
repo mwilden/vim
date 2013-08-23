@@ -103,7 +103,7 @@ let g:ctrlp_mruf_default_order = 1
 let g:ctrlp_mruf_save_on_update = 1
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_switch_buffer = 'ev'
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'r'
 map <C-Z> :CtrlPMRU<CR>
 
 " Project
