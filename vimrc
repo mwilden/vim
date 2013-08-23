@@ -78,7 +78,7 @@ nmap <Leader>" macs'"'a
 nmap <Leader>( ds(i <Esc>
 nmap <Leader>) ds(i <Esc>
 " add parens from cursor through end of line
-nmap <Leader>[ xv$hs)
+nmap <Leader>[ xv$hS)
 
 " save to temporary file
 map <Leader>wip :sav! ~/it<CR>
