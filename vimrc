@@ -98,7 +98,7 @@ command! W w !sudo tee % >/dev/null
 let g:ctrlp_by_filename = 0
 " disable so Project can use <C-P>
 let g:ctrlp_map = '<c-f1>'
-let g:ctrlp_max_height = 10
+let g:ctrlp_max_height = 30
 let g:ctrlp_mruf_default_order = 1
 let g:ctrlp_mruf_save_on_update = 1
 let g:ctrlp_show_hidden = 1
