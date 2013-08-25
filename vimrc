@@ -89,6 +89,9 @@ map <Leader><Space><Space> /\v[^\s]\zs\s+$<CR>
 " show the highlight color under the cursor
 map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 
+"don't require contortions for such a common keystroke
+map fj 
+
 " commands """""""""""""""""""""""
 " write the current buffer even if it requires root access
 command! W w !sudo tee % >/dev/null
@@ -228,7 +231,7 @@ augroup mwilden
   " save when switching applications
   autocmd FocusLost * wa
   " turn off insert mode when switching applications
-  autocmd FocusLost * 
+  autocmd FocusLost *
     \ if mode()[0] =~ 'i\|R' |
     \   call feedkeys("\<Esc>") |
     \ endif
@@ -253,6 +256,3 @@ endif
 filetype plugin indent on
 runtime macros/matchit.vim
 
-
-"don't require contortions for such a common keystroke
-map fj 
