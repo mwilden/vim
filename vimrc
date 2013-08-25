@@ -253,7 +253,6 @@ endif
 filetype plugin indent on
 runtime macros/matchit.vim
 
-botright cwindow
 
 "don't require contortions for such a common keystroke
 map fj 
