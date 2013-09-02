@@ -15,6 +15,7 @@ imap <silent> <C-S> <C-O><C-s>
 " quick-fix
 nmap <silent> <Space> :cn<CR>
 nmap <silent> <S-Space> :cp<CR>
+nmap <silent> <C-Space> :cnf<CR>
 nmap <Leader>q :copen<CR><C-W>J
 nmap <Leader>Q :cclose<CR><C-P>
 
